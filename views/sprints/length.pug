@@ -1,0 +1,28 @@
+extends ../layout
+
+include ../mixins/_button
+include ../mixins/_wordCounter
+include ../mixins/_bitForm
+
+block content
+  .inner
+    h1.txt-center.txt-light-green= title
+    div.txt-light-green.txt-center.big-font.spaced.spaced-bottom.spaced-lg Choose a genre and title before selecting a word count.
+  div#length.inner.flex-container-row.justify-space-around
+    .bit.card.card-wrapper.flex-container-row.justify-center.flex-wrap
+      ol.flex-container-column.align-items-center
+        li.flex-container-row.justify-center.spaced.spaced-bottom.spaced-sm Pick a length
+        li.flex-container-row.justify-center.spaced.spaced-bottom.spaced-sm
+          +button('100', 'words', 'length-sprint')
+        li.flex-container-row.justify-center.spaced.spaced-bottom.spaced-sm 
+          +button('500', 'words', 'length-sprint')
+        li.flex-container-row.justify-center.spaced.spaced-bottom.spaced-sm
+          +button('1000', 'words', 'length-sprint')
+    //-.bit.card.card-wrapper.flex-container-row.justify-center.flex-wrap
+      +wordCounter()
+  .inner
+    .card-wrapper.card-full.flex-container-row.justify-space-between.flex-wrap
+      .bit.card.card-full.shaded.spaced.spaced-top.spaced-lg
+        div.flex-container-column.justify-center
+          //- TODO from will need to be modified to work perfectly with a sprint
+          +bitForm()

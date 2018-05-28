@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $accent-green;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 100%;
+  padding:10px;
+  outline: 0;
+}
+
+ol,
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+input,
+textarea {
+  overflow:hidden;
+  font-size: 22px;
+  height: 40px;
+  border: 0;
+
+  &.title {
+    font-family: "Medula One", serif;
+  }
+}

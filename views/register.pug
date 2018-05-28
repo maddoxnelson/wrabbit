@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .inner.flex-container-row.justify-center
+    .bit.card.shaded.flex-container-row.justify-center
+      form.form.flex-container-column(action="/register" method="POST")
+        h2 Register
+        div.spaced.spaced-bottom.spaced-md
+          label.spaced.spaced-right.spaced-lg(for="name") Name
+          input(type="text" name="name")
+        div.spaced.spaced-bottom.spaced-md
+          label.spaced.spaced-right.spaced-lg(for="email") Email
+          input(type="email" name="email" required)
+        div.spaced.spaced-bottom.spaced-md
+          label.spaced.spaced-right.spaced-lg(for="password") Password
+          input(type="password" name="password")
+        div.spaced.spaced-bottom.spaced-md
+          label.spaced.spaced-right.spaced-lg(for="password-confirm") Confirm Password
+          input(type="password" name="password-confirm")
+        input.button(type="submit" value="Register ->")

@@ -1,0 +1,16 @@
+mixin bitCard(bit = {})
+  .bit.card.shaded
+    div.flex-container-row.justify-center
+      a(href=`/genre/${bit.genre === 'tragedy' ? 'tragedy' : 'comedy'}`)
+        img(src=`/images/icons/${bit.genre === 'tragedy' ? 'tragedy' : 'comedy'}.svg` width="50px" height="50px")
+    h2.flex-container-row.justify-center.txt-center
+      a(href=`/bit/${bit.slug}`) #{bit.name}
+    h3.flex-container-row.justify-center
+      a(href=`/author/${bit.author.slug}`)= bit.author.name
+    //- pre= h.dump(bit)
+    a(class="unstyled" href=`bit/${bit.slug}`)
+      each line, i in h.processNewLines(bit.content)
+        if i < 2
+          p= line
+        if i === 4
+          p.flex-container-row.justify-center.txt-dark-green More...

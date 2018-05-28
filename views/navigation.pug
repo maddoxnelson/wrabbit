@@ -1,0 +1,25 @@
+nav.flex-container-row.justify-space-between
+  ul.flex-container-row
+    li 
+      a(href="/" alt="Home") Home
+    if user
+      li 
+        a(href="/write" alt="Latest Bits") Write Bit
+        li
+          a(href=`/author/${user.slug}`) My written bits
+      li 
+        a(href="/sprint" alt="Word sprint") Word Sprint
+  if user
+    ul.flex-container-row
+      
+      ul.flex-container-row
+        li
+          a(href=`/author/${user.slug}`)= user.name
+        li
+          a(href="/logout" alt="Log out") Log out
+  else
+    ul.flex-container-row
+      li
+        a(href="/register" alt="Register") Register
+      li
+        a(href="/login" alt="Login") Login

@@ -1,0 +1,10 @@
+extends layout
+
+include mixins/_bitForm
+
+block content
+  .inner
+    h1= title
+    pre= h.dump(res)
+    +bitForm(bit)
+    

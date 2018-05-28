@@ -1,0 +1,29 @@
+/* === Abel - regular */
+@font-face {
+	font-family: 'Abel';
+	font-style: normal;
+	font-weight: 400;
+	src: url("./font/Abel-Regular.eot");
+	src: local("Abel Regular"),
+		local("Abel-Regular"),
+		url("./font/Abel-Regular.eot") format("embedded-opentype"),
+		url("./font/Abel-Regular.woff2") format("woff2"),
+		url("./font/Abel-Regular.woff") format("woff"),
+		url("./font/Abel-Regular.ttf") format("truetype"),
+		url("./font/Abel-Regular.svg") format("svg");
+}
+
+/* === Medula One - regular */
+@font-face {
+	font-family: 'Medula One';
+	font-style: normal;
+	font-weight: 400;
+	src: url("./font/MedulaOne-Regular.eot");
+	src: local("Medula One"),
+		local("MedulaOne-Regular"),
+		url("./font/MedulaOne-Regular.eot") format("embedded-opentype"),
+		url("./font/MedulaOne-Regular.woff2") format("woff2"),
+		url("./font/MedulaOne-Regular.woff") format("woff"),
+		url("./font/MedulaOne-Regular.ttf") format("truetype"),
+		url("./font/MedulaOne-Regular.svg") format("svg");
+}

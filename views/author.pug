@@ -1,0 +1,12 @@
+extends layout
+
+include mixins/_bitCard
+
+block content
+  .inner
+    h1 #{user.name}'s bits
+    .card-wrapper.flex-container-row.justify-space-between.flex-wrap
+      pre= h.dump(user)
+      each bit in bits
+        +bitCard(bit, user)
+  
