@@ -1,8 +1,12 @@
 nav {
-  background: $dark-green;
+  background: $ocean-blue;
 
   a {
-    color: white;
+    color: $alice-blue;
+
+    &:visited {
+      color: $alice-blue;
+    }
   }
 
   li {

@@ -75,21 +75,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.submitForm = submitForm;
 exports.validate = validate;
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 function submitForm() {
   var form = document.querySelector('#bit');
   form.submit();
 }
 
 function validate() {
-  var genreBtns = [].concat(_toConsumableArray(document.querySelectorAll('[name="genre"]')));
-  var genreChecked = genreBtns.filter(function (btn) {
-    return btn.checked;
-  }).length > 0;
   var title = document.querySelector('#bit-title').value.length > 0;
-  return title && genreChecked;
+  return title;
 }
 
 /***/ }),
@@ -113,15 +106,13 @@ var _lengthSprint2 = _interopRequireDefault(_lengthSprint);
 
 var _editorHelpers = __webpack_require__(7);
 
-var _editorHelpers2 = _interopRequireDefault(_editorHelpers);
-
 var _prompt = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _timedSprint2.default)();
 (0, _lengthSprint2.default)();
-(0, _editorHelpers2.default)();
+(0, _editorHelpers.expandTextArea)();
 (0, _prompt.prompt)();
 
 /***/ }),
@@ -1044,11 +1035,11 @@ exports.default = lengthSprint;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.expandTextArea = expandTextArea;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function autosize(el) {
-  console.log(el);
   el.style.height = el.scrollHeight + 'px';
 }
 
@@ -1063,8 +1054,6 @@ function expandTextArea() {
     });
   });
 }
-
-exports.default = expandTextArea;
 
 /***/ }),
 /* 8 */

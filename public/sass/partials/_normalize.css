@@ -2,12 +2,20 @@ body {
   margin: 0;
 }
 
+h2 {
+  font-size: 1.2em;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
 
+  &:visited {
+    color: inherit;
+  }
+
   &:hover {
-    color: $accent-green;
+    color: $ocean-blue;
   }
 }
 
@@ -30,12 +38,20 @@ li {
 
 input,
 textarea {
+  outline: 0;
   overflow:hidden;
   font-size: 22px;
   height: 40px;
   border: 0;
+  font-family: $secondary-font, sans-serif;
+
+  &[name=name],
+  &[name=content] {
+    background: $alice-blue;
+    resize: none;
+  }
 
   &.title {
-    font-family: "Medula One", serif;
+    font-family: $primary-font, serif;
   }
 }

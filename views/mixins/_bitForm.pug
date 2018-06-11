@@ -1,29 +1,14 @@
 mixin bitForm(bit = {})
-  .card-wrapper.card.card-full.flex-container-column.justify-center.flex-wrap
-    button#prompt Prompt me!
-    div#prompt-text.spaced.spaced-top.spaced-lg.txt-center
   .card-wrapper.card.card-full.flex-container-row.justify-center.flex-wrap
     .bit.card
-      form(id="bit" action=`/write/${bit._id || ''}` method="POST" class="card card-full justify-center")
+      form(id="bit" action=`/write/${bit._id || ''}` autocomplete="off" method="POST" class="card card-full justify-center")
         div.flex-container-column.align-items-center
-          input(type="text" id="bit-title" name="name" class="txt-center title" placeholder="Enter title" value=bit.name)
+          textarea(id="bit-title" name="name" class="txt-center title" placeholder="Write your title here" value=bit.name)
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-md
-          textarea(id="bit-content" name="content")= bit.content
-        div.flex-container-row.justify-center.align-items-center.spaced.spaced-top.spaced-md
-          if bit.genre == 'comedy'
-            input(type="radio" name="genre" value="comedy" checked)
-            | Comedy
-            input(type="radio" name="genre" value="tragedy")
-            | Tragedy
-          if bit.genre == 'tragedy'
-            input(type="radio" name="genre" value="comedy")
-            | Comedy
-            input(type="radio" name="genre" value="tragedy" checked)
-            | Tragedy
-          else if !bit.genre
-            input(type="radio" name="genre" value="comedy")
-            | Comedy
-            input(type="radio" name="genre" value="tragedy")
-            | Tragedy
+          textarea(id="bit-content" name="content" class="txt-center" placeholder="Write your bit here.")= bit.content
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-lg
-          input(type="submit" value="Save" class="button")
+          input(type="submit" value="Save" class="button" )
+  div.flex-container-row.justify-center
+    .card-wrapper.card.flex-container-row.justify-center.flex-wrap
+      button#prompt Block? Get prompted!
+      div#prompt-text.spaced.spaced-top.spaced-lg.txt-center

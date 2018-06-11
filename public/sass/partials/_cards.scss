@@ -5,8 +5,9 @@
   width: calc(33.33333333% - 20px);
   line-height: 25px;
   font-size: 20px;
-  background: $lightest-green;
+  background: $alice-blue;
   align-self: flex-start;
+  border-radius: 5px;
 
   @media (max-width: 700px) {
     width: 100%;

@@ -11,7 +11,7 @@ const confirmOwner = (bit, user) => {
 exports.getBits = async (req, res) => {
   const bits = await Bit.find();
 
-  res.render('bits', { title: 'Welcome to Wrabbit!', bits });
+  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
 };
 
 exports.addBit = (req, res) => {

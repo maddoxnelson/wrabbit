@@ -18,10 +18,6 @@ const bitSchema = new mongoose.Schema({
     type: String,
     required: 'Go on... write!'
   },
-  genre: {
-    type: String,
-    required: 'Choose a genre.'
-  },
   word_count: {
     type: Number
   }

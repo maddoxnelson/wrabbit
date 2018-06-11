@@ -3,11 +3,16 @@
 body {
   margin: 0; }
 
+h2 {
+  font-size: 1.2em; }
+
 a {
   text-decoration: none;
   cursor: pointer; }
+  a:visited {
+    color: inherit; }
   a:hover {
-    color: #b6c683; }
+    color: #4b49c6; }
 
 * {
   -webkit-box-sizing: border-box;
@@ -26,13 +31,20 @@ li {
 
 input,
 textarea {
+  outline: 0;
   overflow: hidden;
   font-size: 22px;
   height: 40px;
-  border: 0; }
+  border: 0;
+  font-family: "Source Sans Pro", sans-serif; }
+  input[name=name], input[name=content],
+  textarea[name=name],
+  textarea[name=content] {
+    background: #eff5fc;
+    resize: none; }
   input.title,
   textarea.title {
-    font-family: "Medula One", serif; }
+    font-family: "Playfair Display", serif; }
 
 .card {
   position: relative;
@@ -41,9 +53,10 @@ textarea {
   width: calc(33.33333333% - 20px);
   line-height: 25px;
   font-size: 20px;
-  background: #e3edd9;
+  background: #eff5fc;
   -ms-flex-item-align: start;
-      align-self: flex-start; }
+      align-self: flex-start;
+  border-radius: 5px; }
   @media (max-width: 700px) {
     .card {
       width: 100%; } }
@@ -108,8 +121,8 @@ textarea {
       flex-wrap: wrap; }
 
 body {
-  font-family: "Abel", sans-serif;
-  background: #4f4f4c; }
+  font-family: "Source Sans Pro", sans-serif;
+  background: #6d9dc5; }
 
 .inner {
   padding: 0 20px; }
@@ -151,10 +164,10 @@ body {
   color: #fff; }
 
 .txt-light-green {
-  color: #e3edd9; }
+  color: #eff5fc; }
 
 .txt-dark-green {
-  color: #4f4f4c; }
+  color: #0c1519; }
 
 .big-font {
   font-size: 22px; }
@@ -163,21 +176,26 @@ a.unstyled {
   text-decoration: none;
   color: #000; }
 
-button {
+button, .button {
   font-size: 20px;
-  font-family: "Abel";
-  color: #e3edd9;
-  padding: 5px;
-  background: #598c2c;
+  font-family: "Playfair Display";
+  color: #eff5fc;
+  padding: 15px;
+  background: #4b49c6;
   border: 0;
-  border-radius: 5px; }
-  button:hover {
-    background: #4f4f4c; }
+  border-radius: 5px;
+  outline: 0;
+  line-height: 6px;
+  cursor: pointer; }
+  button:hover, .button:hover {
+    background: #6d9dc5; }
 
 nav {
-  background: #4f4f4c; }
+  background: #4b49c6; }
   nav a {
-    color: white; }
+    color: #eff5fc; }
+    nav a:visited {
+      color: #eff5fc; }
   nav li {
     width: 100px;
     list-style-type: none;

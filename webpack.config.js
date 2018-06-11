@@ -47,8 +47,8 @@ const config = {
     new ExtractTextPlugin('style.css'),
     new GoogleFontsPlugin({
 			fonts: [
-				{ family: "Medula One" },
-				{ family: "Abel" }
+				{ family: "Playfair Display" },
+				{ family: "Source Sans Pro" }
 			]
 		})
   ]

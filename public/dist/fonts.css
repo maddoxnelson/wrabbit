@@ -1,29 +1,29 @@
-/* === Abel - regular */
+/* === Playfair Display - regular */
 @font-face {
-	font-family: 'Abel';
+	font-family: 'Playfair Display';
 	font-style: normal;
 	font-weight: 400;
-	src: url("./font/Abel-Regular.eot");
-	src: local("Abel Regular"),
-		local("Abel-Regular"),
-		url("./font/Abel-Regular.eot") format("embedded-opentype"),
-		url("./font/Abel-Regular.woff2") format("woff2"),
-		url("./font/Abel-Regular.woff") format("woff"),
-		url("./font/Abel-Regular.ttf") format("truetype"),
-		url("./font/Abel-Regular.svg") format("svg");
+	src: url("./font/PlayfairDisplay-Regular.eot");
+	src: local("Playfair Display Regular"),
+		local("PlayfairDisplay-Regular"),
+		url("./font/PlayfairDisplay-Regular.eot") format("embedded-opentype"),
+		url("./font/PlayfairDisplay-Regular.woff2") format("woff2"),
+		url("./font/PlayfairDisplay-Regular.woff") format("woff"),
+		url("./font/PlayfairDisplay-Regular.ttf") format("truetype"),
+		url("./font/PlayfairDisplay-Regular.svg") format("svg");
 }
 
-/* === Medula One - regular */
+/* === Source Sans Pro - regular */
 @font-face {
-	font-family: 'Medula One';
+	font-family: 'Source Sans Pro';
 	font-style: normal;
 	font-weight: 400;
-	src: url("./font/MedulaOne-Regular.eot");
-	src: local("Medula One"),
-		local("MedulaOne-Regular"),
-		url("./font/MedulaOne-Regular.eot") format("embedded-opentype"),
-		url("./font/MedulaOne-Regular.woff2") format("woff2"),
-		url("./font/MedulaOne-Regular.woff") format("woff"),
-		url("./font/MedulaOne-Regular.ttf") format("truetype"),
-		url("./font/MedulaOne-Regular.svg") format("svg");
+	src: url("./font/SourceSansPro-Regular.eot");
+	src: local("Source Sans Pro Regular"),
+		local("SourceSansPro-Regular"),
+		url("./font/SourceSansPro-Regular.eot") format("embedded-opentype"),
+		url("./font/SourceSansPro-Regular.woff2") format("woff2"),
+		url("./font/SourceSansPro-Regular.woff") format("woff"),
+		url("./font/SourceSansPro-Regular.ttf") format("truetype"),
+		url("./font/SourceSansPro-Regular.svg") format("svg");
 }
