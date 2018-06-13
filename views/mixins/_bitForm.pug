@@ -3,7 +3,7 @@ mixin bitForm(bit = {})
     .bit.card.card-full
       form(id="bit" action=`/write/${bit._id || ''}` autocomplete="off" method="POST" class="card card-full justify-center")
         div.flex-container-column.align-items-center
-          textarea(id="bit-title" name="name" class="txt-center title" placeholder="Write your title here" value=bit.name)
+          textarea(id="bit-title" name="name" class="txt-center title" placeholder="Write your title here" value=bit.name)= bit.name
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-md
           textarea(id="bit-content" name="content" placeholder="Write your bit here.")= bit.content
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-lg
