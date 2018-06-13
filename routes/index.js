@@ -42,8 +42,7 @@ router.get('/sprint/:mode',
 // Authors
 router.get('/author/:slug',
   authController.isLoggedIn,
-  catchErrors(bitController.getBitsByAuthor),
-  catchErrors(userDashController.showUserDash)
+  catchErrors(bitController.getBitsByAuthor)
 );
 
 // User and authentication routes
