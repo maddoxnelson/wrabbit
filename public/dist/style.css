@@ -190,6 +190,9 @@ button, .button {
   button:hover, .button:hover {
     background: #6d9dc5; }
 
+.icon svg {
+  width: 20px; }
+
 nav {
   background: #4b49c6; }
   nav a {
