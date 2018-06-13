@@ -79,6 +79,6 @@ exports.getBitsByAuthor = async (req, res, next) => {
   req.user = user;
   req.bits = bits
 
-  next();
+  res.render('author', { title: 'Author page', user, bits });
 
 }
