@@ -20,6 +20,9 @@ const bitSchema = new mongoose.Schema({
   },
   word_count: {
     type: Number
+  },
+  prompt: {
+    type: String
   }
 }, {
   toJSON: { virtuals: true },
