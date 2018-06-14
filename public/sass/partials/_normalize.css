@@ -9,9 +9,10 @@ h2 {
 a {
   text-decoration: none;
   cursor: pointer;
+  color: $eerie-black;
 
   &:visited {
-    color: inherit;
+    color: $eerie-black;
   }
 
   &:hover {

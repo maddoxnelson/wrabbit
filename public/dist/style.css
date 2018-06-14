@@ -8,9 +8,10 @@ h2 {
 
 a {
   text-decoration: none;
-  cursor: pointer; }
+  cursor: pointer;
+  color: #0c1519; }
   a:visited {
-    color: inherit; }
+    color: #0c1519; }
   a:hover {
     color: #4b49c6; }
 
@@ -231,6 +232,10 @@ nav {
     color: #eff5fc; }
     nav a:visited {
       color: #eff5fc; }
+      nav a:visited:hover {
+        color: #ffec5e; }
+    nav a:hover {
+      color: #ffec5e; }
   nav li {
     width: 100px;
     list-style-type: none;
