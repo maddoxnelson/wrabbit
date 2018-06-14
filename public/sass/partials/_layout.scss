@@ -10,3 +10,9 @@ body {
 .hidden {
   display: none;
 }
+
+.flash-messages {
+  background: $maize;
+  font-family: $secondary-font;
+  font-size: 18px;
+}

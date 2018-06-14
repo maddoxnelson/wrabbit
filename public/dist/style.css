@@ -139,6 +139,11 @@ body {
 .hidden {
   display: none; }
 
+.flash-messages {
+  background: #ffec5e;
+  font-family: "Source Sans Pro";
+  font-size: 18px; }
+
 .spaced.spaced-top.spaced-lg {
   margin-top: 20px; }
 
@@ -165,6 +170,24 @@ body {
 
 .spaced.spaced-right.spaced-sm {
   margin-right: 10px; }
+
+.pad.pad-left.pad-lg {
+  padding-left: 20px; }
+
+.pad.pad-left.pad-md {
+  padding-left: 15px; }
+
+.pad.pad-left.pad-sm {
+  padding-left: 10px; }
+
+.pad.pad-right.pad-lg {
+  padding-right: 20px; }
+
+.pad.pad-right.pad-md {
+  padding-right: 15px; }
+
+.pad.pad-right.pad-sm {
+  padding-right: 10px; }
 
 .txt-center {
   text-align: center; }

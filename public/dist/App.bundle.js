@@ -108,8 +108,11 @@ var _editorHelpers = __webpack_require__(7);
 
 var _prompt = __webpack_require__(8);
 
+var _flash = __webpack_require__(10);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(0, _flash.flashClickHandler)();
 (0, _timedSprint2.default)();
 (0, _lengthSprint2.default)();
 (0, _editorHelpers.expandTextArea)();
@@ -1640,6 +1643,30 @@ function values(object) {
 }
 
 module.exports = sample;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.flashClickHandler = flashClickHandler;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function flashClickHandler() {
+  var flashMessages = [].concat(_toConsumableArray(document.querySelectorAll('.flash-messages')));
+
+  flashMessages.forEach(function (flash) {
+    setTimeout(function () {
+      flash.remove();
+    }, 3000);
+  });
+}
 
 /***/ })
 /******/ ]);
