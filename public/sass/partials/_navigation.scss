@@ -6,6 +6,14 @@ nav {
 
     &:visited {
       color: $alice-blue;
+
+      &:hover {
+        color: $maize;
+      }
+    }
+
+    &:hover {
+      color: $maize;
     }
   }
 
