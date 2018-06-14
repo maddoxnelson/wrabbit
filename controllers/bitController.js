@@ -62,7 +62,7 @@ exports.createBit = async (req, res) => {
   // TODO carry through bit bits to give users a second chance to finish
   req.body.author = req.user._id;
   const bit = await (new Bit(req.body)).save();
-  req.flash('success', `Successfully created ${bit.title}!`);
+  req.flash('success', `Successfully created ${bit.name}!`);
   res.redirect(`/bit/${bit.slug}`);
 };
 
