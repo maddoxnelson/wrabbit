@@ -29,6 +29,9 @@ li {
   padding: 0;
   margin: 0; }
 
+form {
+  width: 100%; }
+
 input,
 textarea {
   outline: 0;
@@ -42,6 +45,12 @@ textarea {
   textarea[name=content] {
     background: #eff5fc;
     resize: none; }
+  input[name=email], input[name=password],
+  textarea[name=email],
+  textarea[name=password] {
+    font-size: 16px;
+    padding: 10px;
+    width: 250px; }
   input.title,
   textarea.title {
     font-family: "Playfair Display", serif; }

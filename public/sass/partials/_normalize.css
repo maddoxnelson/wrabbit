@@ -36,6 +36,10 @@ li {
   margin: 0;
 }
 
+form {
+  width: 100%;
+}
+
 input,
 textarea {
   outline: 0;
@@ -49,6 +53,13 @@ textarea {
   &[name=content] {
     background: $alice-blue;
     resize: none;
+  }
+
+  &[name=email],
+  &[name=password] {
+    font-size: 16px;
+    padding: 10px;
+    width: 250px;
   }
 
   &.title {
