@@ -6,6 +6,8 @@ mixin bitForm(bit = {})
           textarea(id="bit-title" name="name" class="txt-center title" placeholder="Write your title here" value=bit.name)= bit.name
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-md
           textarea(id="bit-content" name="content" placeholder="Write your bit here.")= bit.content
+        div
+          textarea.hidden(id="prompt-submit" name="prompt")
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-lg
           input(type="submit" value="Save" class="button" )
   div.flex-container-row.justify-center

@@ -1085,8 +1085,9 @@ var setPrompt = function () {
             prompt = (0, _context.t0)(_context.t1, 1);
 
             document.querySelector('#prompt-text').innerHTML = prompt;
+            addPromptToform(prompt);
 
-          case 6:
+          case 7:
           case 'end':
             return _context.stop();
         }
@@ -1108,6 +1109,10 @@ var _lodash2 = _interopRequireDefault(_lodash);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function addPromptToform(prompt) {
+  document.querySelector('#prompt-submit').value = prompt;
+}
 
 function fetchPrompts() {
 
