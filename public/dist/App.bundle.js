@@ -108,7 +108,7 @@ var _editorHelpers = __webpack_require__(7);
 
 var _prompt = __webpack_require__(8);
 
-var _flash = __webpack_require__(11);
+var _flash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1645,8 +1645,7 @@ function values(object) {
 module.exports = sample;
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

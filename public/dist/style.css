@@ -221,10 +221,6 @@ button, .button {
   cursor: pointer; }
   button:hover, .button:hover {
     background: #6d9dc5; }
-  button.light, .button.light {
-    background: #6d9dc5; }
-  button.small, .button.small {
-    height: calc(100% - 10px); }
 
 .icon svg {
   width: 20px; }

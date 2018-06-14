@@ -13,14 +13,6 @@ button, .button {
   &:hover {
     background: $cerulean-frost;
   }
-
-  &.light {
-    background: $cerulean-frost;
-  }
-
-  &.small {
-    height: calc(100% - 10px);
-  }
 }
 
 .icon svg {
