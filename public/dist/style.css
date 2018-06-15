@@ -3,8 +3,17 @@
 body {
   margin: 0; }
 
+h1,
+h2,
+h3 {
+  font-family: "Playfair Display"; }
+
 h2 {
-  font-size: 1.2em; }
+  font-size: 1.2em;
+  line-height: 1.5em; }
+
+h3 {
+  font-size: 1em; }
 
 a {
   text-decoration: none;
@@ -208,7 +217,8 @@ body {
   color: #0c1519; }
 
 .big-font {
-  font-size: 22px; }
+  font-size: 22px;
+  font-family: "Playfair Display"; }
 
 a.unstyled {
   text-decoration: none;
