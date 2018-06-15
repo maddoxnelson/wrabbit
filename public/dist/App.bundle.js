@@ -75,7 +75,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.submitForm = submitForm;
 exports.validate = validate;
+function freezeForm() {
+  document.querySelector('#bit-content').setAttribute('readonly', true);
+}
+
 function submitForm() {
+  freezeForm();
   var form = document.querySelector('#bit');
   form.submit();
 }
