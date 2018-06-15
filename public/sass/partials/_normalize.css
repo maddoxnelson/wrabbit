@@ -2,8 +2,19 @@ body {
   margin: 0;
 }
 
+h1,
+h2,
+h3 {
+  font-family: $primary-font;
+}
+
 h2 {
   font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+h3 {
+  font-size: 1em;
 }
 
 a {
