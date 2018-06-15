@@ -5,8 +5,7 @@ const slug = require('slugs');
 const bitSchema = new mongoose.Schema({
   name: {
     type: String,
-    trim: true,
-    required: 'Please enter a Bit title.'
+    trim: true
   },
   slug: String,
   author: {
@@ -30,13 +29,15 @@ const bitSchema = new mongoose.Schema({
 });
 
 bitSchema.pre('save', async function(next) {
+  console.log(this.content)
+  this.name = this.name || this.content.split(' ').slice(0,4).join(' ')
+
   if (!this.isModified('name')) {
     console.log('checking for modification... finding an identical one')
     return next(); // move along, don't redo the slug if name hasn't changed
   }
   this.word_count = Number(this.content.split(' ').length)
 
-  console.log('this:', this)
   // slugifies the name
   this.slug = slug(this.name);
   // find other stores with similar slug or slug-1

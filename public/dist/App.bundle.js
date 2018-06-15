@@ -74,7 +74,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.submitForm = submitForm;
-exports.validate = validate;
+exports.showEditableForms = showEditableForms;
+
+var _editorHelpers = __webpack_require__(7);
+
 function freezeForm() {
   document.querySelector('#bit-content').setAttribute('readonly', true);
 }
@@ -85,9 +88,10 @@ function submitForm() {
   form.submit();
 }
 
-function validate() {
-  var title = document.querySelector('#bit-title').value.length > 0;
-  return title;
+function showEditableForms() {
+  var editor = document.querySelector('#bit-content');
+  editor.classList.remove('hidden');
+  (0, _editorHelpers.expandTextArea)();
 }
 
 /***/ }),
@@ -885,11 +889,7 @@ var runSprint = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            if (!(0, _sprintHelpers.validate)()) {
-              _context.next = 16;
-              break;
-            }
-
+            (0, _sprintHelpers.showEditableForms)();
             hideBox(document.getElementById('timed'));
             time = parseInt(this.dataset.value) * 60;
 
@@ -910,10 +910,8 @@ var runSprint = function () {
           case 12:
             (0, _sprintHelpers.submitForm)();
             console.log('Display stats on the next page');
-            _context.next = 16;
-            break;
 
-          case 16:
+          case 14:
           case 'end':
             return _context.stop();
         }
@@ -1006,18 +1004,17 @@ function hideBox(el) {
 }
 
 function runSprint() {
-  if ((0, _sprintHelpers.validate)()) {
-    var contentInput = document.querySelector('#bit-content');
-    var wordLimit = parseInt(this.dataset.value);
-    var numberWords = contentInput.addEventListener('keyup', function (e) {
+  (0, _sprintHelpers.showEditableForms)();
+  var contentInput = document.querySelector('#bit-content');
+  var wordLimit = parseInt(this.dataset.value);
+  var numberWords = contentInput.addEventListener('keyup', function (e) {
 
-      if (checkWordCount(e.target) > wordLimit) {
-        (0, _sprintHelpers.submitForm)();
-      }
-    });
+    if (checkWordCount(e.target) > wordLimit) {
+      (0, _sprintHelpers.submitForm)();
+    }
+  });
 
-    hideBox(document.getElementById('length'));
-  }
+  hideBox(document.getElementById('length'));
 }
 
 function init() {

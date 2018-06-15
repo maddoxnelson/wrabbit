@@ -1,16 +1,16 @@
-mixin bitForm(bit = {})
+mixin bitForm(bit = {}, options = {})
   .card-wrapper.card.card-full.flex-container-row.justify-center.flex-wrap
     .bit.card.card-full
       form(id="bit" action=`/write/${bit._id || ''}` autocomplete="off" onclick="this.disabled = true" method="POST" class="card card-full justify-center")
         div.flex-container-column.align-items-center
           textarea(id="bit-title" name="name" class="txt-center title" placeholder="Write your title here" value=bit.name)= bit.name
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-md
-          textarea(id="bit-content" name="content" placeholder="Write your bit here.")= bit.content
+          textarea(id="bit-content" class=`${options.content}` name="content" placeholder="Write your bit here.")= bit.content
         div
           textarea.hidden(id="prompt-submit" name="prompt")
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-lg
-          input(type="submit" value="Save" class="button" )
+          input(type="submit" value="Save" class=`button ${options.submit}` )
   div.flex-container-row.justify-center
-    .card-wrapper.card.flex-container-row.justify-center.flex-wrap
-      button#prompt Block? Get prompted!
+    .card-wrapper.card.card-half.flex-container-row.justify-center.flex-wrap
+      button#prompt Blocked? Get prompted!
       div#prompt-text.spaced.spaced-top.spaced-lg.txt-center

@@ -1,3 +1,5 @@
+import { expandTextArea } from './editorHelpers';
+
 function freezeForm() {
   document.querySelector('#bit-content').setAttribute('readonly', true);
 }
@@ -8,7 +10,8 @@ export function submitForm() {
   form.submit();
 }
 
-export function validate() {
-  const title = document.querySelector('#bit-title').value.length > 0;
-  return title;
+export function showEditableForms() {
+  const editor = document.querySelector('#bit-content')
+  editor.classList.remove('hidden')
+  expandTextArea()
 }
