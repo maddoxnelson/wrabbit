@@ -48,8 +48,8 @@ exports.updateBit = async (req, res) => {
     }
   ).exec();
 
-  req.flash('success', `Successfully updated ${bit.name}.<a href="/bit/${bit.slug}">View bit -></a>`);
-  res.redirect(`/bits/${bit._id}/edit`)
+  req.flash('success', `Successfully updated ${bit.name}`);
+  res.redirect(`/bit/${bit.slug}`)
 };
 
 exports.getBitBySlug = async (req, res, next) => {
