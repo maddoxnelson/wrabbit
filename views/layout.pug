@@ -12,14 +12,12 @@ html
 
     block messages
       if locals.flashes
-        .inner
-          .flash-messages
-            - const categories = Object.keys(locals.flashes)
-            each category in categories
-              each message in flashes[category]
-                .flash(class=`flash--${category}`)
-                  p.flash__text!= message
-                  button.flash__remove(onClick="this.parentElement.remove()") &times;
+        .flash-messages.pad.pad-right.pad-left.pad-lg
+          - const categories = Object.keys(locals.flashes)
+          each category in categories
+            each message in flashes[category]
+              .flash(class=`flex-container-row flash--${category}`)
+                p.flash__text!= message
     .content
       block content
     

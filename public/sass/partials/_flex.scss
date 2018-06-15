@@ -20,6 +20,10 @@
   justify-content: space-around;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
 .align-items-center {
   align-items: center;
 }
@@ -30,4 +34,8 @@
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.flex-fill {
+  flex: 1 1 auto;
 }

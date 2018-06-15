@@ -6,10 +6,11 @@ block content
   .inner
     .card-wrapper.flex-container-row.justify-center.flex-wrap
       .bit.card.card-full.shaded.spaced.spaced-top.spaced-lg
-        div
+        div.flex-container-row.justify-end
           if user && bit.author.equals(user._id)
             a(class="icon" href=`/bits/${bit._id}/edit`)
               != h.icon('pencil')
+            a(class="icon" href=`/bit/delete/${bit._id}`) X
         h1.flex-container-row.justify-center= bit.name
         h2.flex-container-row.justify-center= bit.author.name
         each line, i in h.processNewLines(bit.content)

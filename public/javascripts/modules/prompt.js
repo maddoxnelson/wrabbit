@@ -1,8 +1,13 @@
 import sample from 'lodash.sample';
 
+function addPromptToform(prompt) {
+  document.querySelector('#prompt-submit').value = prompt
+}
+
 async function setPrompt() {
   let prompt = sample(await fetchPrompts(), 1);
   document.querySelector('#prompt-text').innerHTML = prompt;
+  addPromptToform(prompt)
 }
 
 function fetchPrompts() {

@@ -3,6 +3,6 @@ extends layout
 include mixins/_loginForm
 
 block content
-  .inner
-    h1= title
+  .inner.flex-container-column.align-items-center
+    h1.flex-container-row.justify-center= title
     +loginForm()

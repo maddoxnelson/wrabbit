@@ -1,4 +1,4 @@
-import { submitForm, validate } from './sprintHelpers';
+import { submitForm, showEditableForms } from './sprintHelpers';
 
 function checkWordCount(el) {
   return el.value.split(' ').length - 1;
@@ -9,18 +9,17 @@ function hideBox(el) {
 }
 
 function runSprint() {
-  if (validate()) {
-    const contentInput = document.querySelector('#bit-content');
-    const wordLimit = parseInt(this.dataset.value);
-    const numberWords = contentInput.addEventListener('keyup', (e) => {
+  showEditableForms()
+  const contentInput = document.querySelector('#bit-content');
+  const wordLimit = parseInt(this.dataset.value);
+  const numberWords = contentInput.addEventListener('keyup', (e) => {
 
-      if (checkWordCount(e.target) > wordLimit) {
-        submitForm();
-      }
-    });
+    if (checkWordCount(e.target) > wordLimit) {
+      submitForm();
+    }
+  });
 
-    hideBox(document.getElementById('length'))
-  }
+  hideBox(document.getElementById('length'))
 }
 
 function init() {

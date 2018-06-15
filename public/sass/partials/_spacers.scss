@@ -49,3 +49,36 @@ $spaced-sm: 10px;
     }
   }
 }
+
+.pad {
+
+  &.pad-left {
+
+    &.pad-lg {
+      padding-left: $spaced-lg;
+    }
+
+    &.pad-md {
+      padding-left: $spaced-md;
+    }
+
+    &.pad-sm {
+      padding-left: $spaced-sm;
+    }
+  }
+
+  &.pad-right {
+
+    &.pad-lg {
+      padding-right: $spaced-lg;
+    }
+
+    &.pad-md {
+      padding-right: $spaced-md;
+    }
+
+    &.pad-sm {
+      padding-right: $spaced-sm;
+    }
+  }
+}

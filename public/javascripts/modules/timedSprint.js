@@ -1,4 +1,4 @@
-import { submitForm, validate } from './sprintHelpers';
+import { submitForm, showEditableForms } from './sprintHelpers';
 
 function strPadLeft(string, pad, length) {
   return (new Array(length+1).join(pad)+string).slice(-length);
@@ -36,20 +36,17 @@ function countdown(duration = 5) {
 }
 
 async function runSprint() {
-  if (validate()) {
-    hideBox(document.getElementById('timed'))
-    const time = parseInt(this.dataset.value) * 60;
-    console.log('Sprint starting in 5 seconds...')
-    await countdown(5);
-    console.log(`${this.dataset.value} ${this.dataset.unit} sprint starting!!`)
-    await countdown(time);
-    console.log('SPRINT COMPLETE! Take 15 seconds to finish your current sentence.')
-    await countdown(15);
-    submitForm();
-    console.log('Display stats on the next page')
-  } else {
-
-  }
+  showEditableForms()
+  hideBox(document.getElementById('timed'))
+  const time = parseInt(this.dataset.value) * 60;
+  console.log('Sprint starting in 5 seconds...')
+  await countdown(5);
+  console.log(`${this.dataset.value} ${this.dataset.unit} sprint starting!!`)
+  await countdown(time);
+  console.log('SPRINT COMPLETE! Take 15 seconds to finish your current sentence.')
+  await countdown(15);
+  submitForm();
+  console.log('Display stats on the next page')
 }
 
 function init() {

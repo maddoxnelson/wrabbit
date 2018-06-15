@@ -28,12 +28,16 @@ exports.editBit = async (req, res) => {
   res.render('editBit', { title: `Edit ${bit.name}`, bit })
 }
 
+exports.deleteBit = async (req, res) => {
+  const bit = await Bit.deleteOne(
+    { _id: req.params.id }
+  ).exec()
+
+  req.flash('success', `Deleted.</a>`);
+  res.redirect(`/`)
+}
+
 exports.updateBit = async (req, res) => {
-  console.log(req.params.id)
-
-  const bit1 = await Bit.findOne({ _id: req.params.id })
-
-  console.log(req.body)
 
   const bit = await Bit.findOneAndUpdate(
     { _id: req.params.id }, // query
@@ -44,11 +48,8 @@ exports.updateBit = async (req, res) => {
     }
   ).exec();
 
-  //console.log(bit)
-
-  req.flash('success', `Successfully updated ${bit.name}.<a href="/bit/${bit.slug}">View bit -></a>`);
-  res.redirect(`/bits/${bit._id}/edit`)
-  // redirect them the store and tell them it worked
+  req.flash('success', `Successfully updated ${bit.name}`);
+  res.redirect(`/bit/${bit.slug}`)
 };
 
 exports.getBitBySlug = async (req, res, next) => {
@@ -62,7 +63,7 @@ exports.createBit = async (req, res) => {
   // TODO carry through bit bits to give users a second chance to finish
   req.body.author = req.user._id;
   const bit = await (new Bit(req.body)).save();
-  req.flash('success', `Successfully created ${bit.title}!`);
+  req.flash('success', `Successfully created ${bit.name}!`);
   res.redirect(`/bit/${bit.slug}`);
 };
 

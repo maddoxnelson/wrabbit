@@ -1,9 +1,9 @@
 mixin bitCard(bit = {})
   .bit.card.shaded
-    div.flex-container-row.align-items-center
+    div.flex-container-row.align-items-center.justify-center
       h2.flex-container-row.txt-center
         a( href=`../bit/${bit.slug}`) #{bit.name}
-    h3.flex-container-row
+    h3.flex-container-row.justify-center
       a(href=`/author/${bit.author.slug}`)= bit.author.name
     //- pre= h.dump(bit)
     a(class="unstyled" href=`../bit/${bit.slug}`)
