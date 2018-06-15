@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,16 +76,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.submitForm = submitForm;
 exports.showEditableForms = showEditableForms;
 
-var _editorHelpers = __webpack_require__(7);
+var _editorHelpers = __webpack_require__(1);
 
 function freezeForm() {
   document.querySelector('#bit-content').setAttribute('readonly', true);
 }
 
+var formSubmitted = false;
+
 function submitForm() {
   freezeForm();
   var form = document.querySelector('#bit');
-  form.submit();
+  if (!formSubmitted) {
+    form.submit();
+    formSubmitted = true;
+  }
 }
 
 function showEditableForms() {
@@ -101,19 +106,49 @@ function showEditableForms() {
 "use strict";
 
 
-__webpack_require__(2);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.expandTextArea = expandTextArea;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function autosize(el) {
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function expandTextArea() {
+  var textareas = [].concat(_toConsumableArray(document.querySelectorAll('textarea')));
+  textareas.forEach(function (area) {
+    return autosize(area);
+  });
+  textareas.forEach(function (area) {
+    return area.addEventListener('keydown', function (e) {
+      autosize(e.target);
+    });
+  });
+}
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 __webpack_require__(3);
 
-var _timedSprint = __webpack_require__(5);
+__webpack_require__(4);
+
+var _timedSprint = __webpack_require__(6);
 
 var _timedSprint2 = _interopRequireDefault(_timedSprint);
 
-var _lengthSprint = __webpack_require__(6);
+var _lengthSprint = __webpack_require__(7);
 
 var _lengthSprint2 = _interopRequireDefault(_lengthSprint);
 
-var _editorHelpers = __webpack_require__(7);
+var _editorHelpers = __webpack_require__(1);
 
 var _prompt = __webpack_require__(8);
 
@@ -128,13 +163,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _prompt.prompt)();
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -839,10 +874,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 function () {
   return this;
 }() || Function("return this")());
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)(module)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -872,7 +907,7 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -981,7 +1016,7 @@ function timedSprint() {
 exports.default = timedSprint;
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1029,36 +1064,6 @@ function lengthSprint() {
 }
 
 exports.default = lengthSprint;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.expandTextArea = expandTextArea;
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function autosize(el) {
-  el.style.height = el.scrollHeight + 'px';
-}
-
-function expandTextArea() {
-  var textareas = [].concat(_toConsumableArray(document.querySelectorAll('textarea')));
-  textareas.forEach(function (area) {
-    return autosize(area);
-  });
-  textareas.forEach(function (area) {
-    return area.addEventListener('keydown', function (e) {
-      autosize(e.target);
-    });
-  });
-}
 
 /***/ }),
 /* 8 */

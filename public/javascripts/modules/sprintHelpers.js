@@ -4,10 +4,16 @@ function freezeForm() {
   document.querySelector('#bit-content').setAttribute('readonly', true);
 }
 
+let formSubmitted = false
+
 export function submitForm() {
   freezeForm();
   const form = document.querySelector('#bit');
-  form.submit();
+  if (!formSubmitted) {
+    form.submit();
+    formSubmitted = true
+  }
+
 }
 
 export function showEditableForms() {
