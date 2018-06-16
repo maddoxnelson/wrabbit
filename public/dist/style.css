@@ -191,6 +191,15 @@ body {
 .spaced.spaced-right.spaced-sm {
   margin-right: 10px; }
 
+.spaced.spaced-left.spaced-lg {
+  margin-left: 20px; }
+
+.spaced.spaced-left.spaced-md {
+  margin-left: 15px; }
+
+.spaced.spaced-left.spaced-sm {
+  margin-left: 10px; }
+
 .pad.pad-left.pad-lg {
   padding-left: 20px; }
 
