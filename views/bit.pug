@@ -10,7 +10,7 @@ block content
           if user && bit.author.equals(user._id)
             a(class="icon" href=`/bits/${bit._id}/edit`)
               != h.icon('pencil')
-            a(class="icon" href=`/bit/delete/${bit._id}`) X
+            div(class="icon delete" data-link=`/bit/delete/${bit._id}`) X
         h1.flex-container-row.justify-center= bit.name
         h2.flex-container-row.justify-center= bit.author.name
         each line, i in h.processNewLines(bit.content)
