@@ -262,6 +262,9 @@ button, .button {
   height: 40px;
   cursor: pointer; }
 
+.icon.avatar {
+  border-radius: 50%; }
+
 .icon.logo:hover path,
 .icon.logo:hover polygon {
   fill: #ffec5e; }
