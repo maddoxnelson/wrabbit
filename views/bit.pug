@@ -13,7 +13,8 @@ block content
             div(class="icon delete flex-container-row justify-center align-items-center" data-link=`/bit/delete/${bit._id}`)
               != h.icon('trash-can')
         h1.flex-container-row.justify-center.txt-center= bit.name
-        h2.flex-container-row.justify-center= bit.author.name
+        a(href=`/author/${user.slug}`)
+          h2.flex-container-row.justify-center= bit.author.name
         each line, i in h.processNewLines(bit.content)
           p= line
         //- pre= h.dump(bit)
