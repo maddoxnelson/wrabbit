@@ -23,8 +23,12 @@ button, .button {
 
 .icon {
 
+  &.avatar {
+    border-radius: 50%;
+  }
+
   &.logo {
-  
+
     &:hover {
 
       path,
