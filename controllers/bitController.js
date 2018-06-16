@@ -8,8 +8,29 @@ const confirmOwner = (bit, user) => {
   }
 };
 
+exports.showUserFeedBits = async (req, res, next) => {
+  if (!req.user) return next()
+
+  const user = await User.findOne( { slug: req.user.slug } )
+
+  const allMyBits = await Bit.find(
+    { author: user._id, private: [true, false] }
+  )
+
+  const otherPeoplesPublicBits = await Bit.find(
+    { author: { $ne: user._id }, private: false }
+  )
+
+  const bits = [...allMyBits, ...otherPeoplesPublicBits]
+
+  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
+}
+
 exports.getBits = async (req, res) => {
-  const bits = await Bit.find();
+
+  const bits = await Bit.find(
+    { private: false }
+  )
 
   res.render('bits', { title: 'Welcome to Wrabbit.', bits });
 };
