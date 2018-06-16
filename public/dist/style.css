@@ -251,8 +251,13 @@ button, .button {
   button:hover, .button:hover {
     background: #6d9dc5; }
 
+.icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer; }
+
 .icon svg {
-  width: 30px; }
+  height: 25px; }
 
 nav {
   background: #4b49c6;
