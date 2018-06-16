@@ -1,4 +1,4 @@
-mixin bitForm(bit = {}, options = {})
+mixin bitForm(bit = {}, options = { submit: ''})
   .card-wrapper.card.card-full.flex-container-row.justify-center.flex-wrap
     .bit.card.card-full
       form(id="bit" action=`/write/${bit._id || ''}` autocomplete="off" onsubmit="this.disabled = true" onclick="this.disabled = true" method="POST" class="card card-full justify-center")
@@ -9,7 +9,7 @@ mixin bitForm(bit = {}, options = {})
         div
           textarea.hidden(id="prompt-submit" name="prompt")
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-lg
-          input(type="submit" value="Save" class=`button ${options.submit}` )
+          button(type="submit" value="Save" class=`button ${options.submit}` ) Save
   div.flex-container-row.justify-center
     .card-wrapper.card.card-half.flex-container-row.justify-center.flex-wrap
       button#prompt Blocked? Get prompted!
