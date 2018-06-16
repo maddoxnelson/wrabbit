@@ -9,3 +9,18 @@ export function expandTextArea() {
     autosize(e.target)
   }));
 }
+
+export function deleteWarning() {
+  const deleteBtns = [...document.querySelectorAll('.delete')]
+
+  function deleteAndRedirect(link) {
+    location.href = link
+  }
+
+  deleteBtns.forEach(btn => {
+    btn.addEventListener('click', e => {
+      let confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.')
+      if (confirm) deleteAndRedirect(e.target.dataset.link)
+    })
+  })
+}

@@ -110,6 +110,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.expandTextArea = expandTextArea;
+exports.deleteWarning = deleteWarning;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -125,6 +126,21 @@ function expandTextArea() {
   textareas.forEach(function (area) {
     return area.addEventListener('keydown', function (e) {
       autosize(e.target);
+    });
+  });
+}
+
+function deleteWarning() {
+  var deleteBtns = [].concat(_toConsumableArray(document.querySelectorAll('.delete')));
+
+  function deleteAndRedirect(link) {
+    location.href = link;
+  }
+
+  deleteBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.');
+      if (confirm) deleteAndRedirect(e.target.dataset.link);
     });
   });
 }
@@ -156,6 +172,7 @@ var _flash = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+(0, _editorHelpers.deleteWarning)();
 (0, _flash.flashClickHandler)();
 (0, _timedSprint2.default)();
 (0, _lengthSprint2.default)();
