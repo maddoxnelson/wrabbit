@@ -33,6 +33,7 @@ textarea {
   padding: 10px;
   outline: 0; }
 
+ul,
 ol,
 li {
   list-style-type: none;
@@ -234,6 +235,10 @@ body {
   font-size: 22px;
   font-family: "Playfair Display"; }
 
+.font-bold {
+  font-weight: 600;
+  letter-spacing: .6px; }
+
 a.unstyled {
   text-decoration: none;
   color: #000; }
@@ -256,12 +261,22 @@ button, .button {
   height: 40px;
   cursor: pointer; }
 
+.icon.logo:hover path,
+.icon.logo:hover polygon {
+  fill: #ffec5e; }
+
+.icon.logo svg {
+  height: 40px; }
+
 .icon svg {
   height: 25px; }
 
 nav {
   background: #4b49c6;
-  overflow: hidden; }
+  overflow: hidden;
+  font-family: "Playfair Display";
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23); }
   nav a {
     color: #eff5fc; }
     nav a:visited {
@@ -270,7 +285,11 @@ nav {
         color: #ffec5e; }
     nav a:hover {
       color: #ffec5e; }
+  nav ul {
+    padding: 10px 0; }
   nav li {
-    width: 100px;
-    list-style-type: none;
+    font-size: 1.1em;
+    padding: 0 20px;
     text-align: center; }
+    nav li:first-child {
+      padding: 0 0 0 20px; }

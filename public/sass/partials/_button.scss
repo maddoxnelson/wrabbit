@@ -23,6 +23,21 @@ button, .button {
 
 .icon {
 
+  &.logo {
+  
+    &:hover {
+
+      path,
+      polygon {
+        fill: $maize;
+      }
+    }
+
+    svg {
+      height: 40px;
+    }
+  }
+
   svg {
     height: 25px;
   }

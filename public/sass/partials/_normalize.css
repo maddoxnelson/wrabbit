@@ -41,6 +41,7 @@ textarea {
   outline: 0;
 }
 
+ul,
 ol,
 li {
   list-style-type: none;
