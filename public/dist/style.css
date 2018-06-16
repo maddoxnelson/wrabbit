@@ -246,7 +246,8 @@ button, .button {
   width: 30px; }
 
 nav {
-  background: #4b49c6; }
+  background: #4b49c6;
+  overflow: hidden; }
   nav a {
     color: #eff5fc; }
     nav a:visited {
