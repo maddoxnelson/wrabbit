@@ -1108,7 +1108,7 @@ var setPrompt = function () {
             _context.t1 = _context.sent;
             prompt = (0, _context.t0)(_context.t1, 1);
 
-            document.querySelector('#prompt-text').innerHTML = prompt;
+            document.querySelector('#prompt-text').innerText = prompt;
             addPromptToform(prompt);
 
           case 7:
