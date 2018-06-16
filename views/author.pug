@@ -4,7 +4,7 @@ include mixins/_bitCard
 
 block content
   .inner
-    h1 #{user.name}'s bits
+    h1.txt-light-green.flex-container-row.justify-center #{user.name}'s written work
     .card-wrapper.flex-container-row.justify-space-between.flex-wrap
       //- pre= h.dump(user)
       each bit in bits
