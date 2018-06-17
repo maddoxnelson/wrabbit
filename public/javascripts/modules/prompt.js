@@ -6,7 +6,7 @@ function addPromptToform(prompt) {
 
 async function setPrompt() {
   let prompt = sample(await fetchPrompts(), 1);
-  document.querySelector('#prompt-text').innerHTML = prompt;
+  document.querySelector('#prompt-text').innerText = prompt;
   addPromptToform(prompt)
 }
 

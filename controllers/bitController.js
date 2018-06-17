@@ -8,8 +8,30 @@ const confirmOwner = (bit, user) => {
   }
 };
 
+exports.showUserFeedBits = async (req, res, next) => {
+  if (!req.user) return next()
+
+  const user = await User.findOne( { slug: req.user.slug } )
+
+  const allMyBits = await Bit.find(
+    { author: user._id, privacy: ['trustedUsers', 'onlyMe', 'world'] }
+  )
+
+  // TODO This will show all people's public bits, but should also check if the user is one of their trusted users.
+  const otherPeoplesPublicBits = await Bit.find(
+    { author: { $ne: user._id }, privacy: 'world' }
+  )
+
+  const bits = [...allMyBits, ...otherPeoplesPublicBits]
+
+  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
+}
+
 exports.getBits = async (req, res) => {
-  const bits = await Bit.find();
+
+  const bits = await Bit.find(
+    { privacy: 'world' }
+  )
 
   res.render('bits', { title: 'Welcome to Wrabbit.', bits });
 };
@@ -75,7 +97,10 @@ exports.showBitsByGenre = async (req, res) => {
 
 exports.getBitsByAuthor = async (req, res, next) => {
   const user = await User.findOne({ slug: req.params.slug });
-  const bits = await Bit.find({ author: user._id })
+  // TODO if I am considered a trustedUser to this author, show me all their not Only Me bits
+  const bits = await Bit.find(
+    { author: user._id, privacy: 'world' }
+  )
 
   req.user = user;
   req.bits = bits

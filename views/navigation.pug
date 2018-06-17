@@ -1,25 +1,24 @@
-nav.flex-container-row.justify-space-between
+nav.flex-container-row.justify-space-between.font-bold
   ul.flex-container-row
-    li 
-      a(href="/" alt="Home") Home
-    if user
-      li 
+    li.flex-container-row.align-items-center.justify-center 
+      a(class="icon logo flex-container-row justify-center align-items-center spaced spaced-right spaced-sm" href=`/`)
+        != h.icon('wrabbit-icon-white')
+      if user
         a(href="/write" alt="Latest Bits") Write Bit
-        li
-          a(href=`/author/${user.slug}`) My written bits
-      li 
+    if user
+      li.flex-container-row.align-items-center.justify-center
         a(href="/sprint" alt="Word sprint") Word Sprint
   if user
     ul.flex-container-row
-      
       ul.flex-container-row
-        li
-          a(href=`/author/${user.slug}`)= user.name
-        li
+        li.flex-container-row.align-items-center.justify-center
+          a.flex-container-row.align-items-center(href=`/author/${user.slug}`)
+            img.icon.avatar(src=user.gravatar + '&d=retro')
+        li.flex-container-row.align-items-center.justify-center
           a(href="/logout" alt="Log out") Log out
   else
     ul.flex-container-row
-      li
+      li.flex-container-row.align-items-center.justify-center
         a(href="/register" alt="Register") Register
-      li
+      li.flex-container-row.align-items-center.justify-center
         a(href="/login" alt="Login") Login

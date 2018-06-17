@@ -48,7 +48,7 @@ const config = {
     new GoogleFontsPlugin({
 			fonts: [
 				{ family: "Playfair Display" },
-				{ family: "Source Sans Pro" }
+				{ family: "Source Sans Pro", variants: [ "400", "600" ] }
 			]
 		})
   ]

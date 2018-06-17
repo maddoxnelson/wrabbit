@@ -48,6 +48,21 @@ $spaced-sm: 10px;
       margin-right: $spaced-sm;
     }
   }
+
+  &.spaced-left {
+
+    &.spaced-lg {
+      margin-left: $spaced-lg;
+    }
+
+    &.spaced-md {
+      margin-left: $spaced-md;
+    }
+
+    &.spaced-sm {
+      margin-left: $spaced-sm;
+    }
+  }
 }
 
 .pad {

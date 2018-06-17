@@ -6,6 +6,7 @@ h1,
 h2,
 h3 {
   font-family: $primary-font;
+  line-height: 1.3em;
 }
 
 h2 {
@@ -41,6 +42,7 @@ textarea {
   outline: 0;
 }
 
+ul,
 ol,
 li {
   list-style-type: none;

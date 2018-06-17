@@ -9,7 +9,10 @@ const { catchErrors } = require('../handlers/errorHandlers');
 
 module.exports = router;
 
-router.get('/', catchErrors(bitController.getBits));
+router.get('/',
+  catchErrors(bitController.showUserFeedBits),
+  catchErrors(bitController.getBits)
+);
 router.get('/write', bitController.addBit);
 
 router.get('/bits/:id/edit',catchErrors(bitController.editBit));
@@ -43,7 +46,6 @@ router.get('/sprint/:mode',
 
 // Authors
 router.get('/author/:slug',
-  authController.isLoggedIn,
   catchErrors(bitController.getBitsByAuthor)
 );
 

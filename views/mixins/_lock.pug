@@ -1,0 +1,13 @@
+mixin lock(privacySetting = 'trustedUsers', options = { hideToggle: false })
+  abbr(title=`This is a ${privacySetting != 'world' ? ' private ' : ' public '} bit. It will display for ${privacySetting != 'world' ? 'you and your trusted friends.' : 'everyone.'} To change your privacy settings, go to the Edit page.`)
+    div(class=`icon lock relative flex-container-row justify-center align-items-center`)
+      div(class=`lock-item lock-closed flex-container-row justify-center align-items-center ${privacySetting != 'world' ? '' : 'hidden'}`)
+        != h.icon('lock-closed')
+      div(class=`lock-item lock-open flex-container-row justify-center align-items-center ${privacySetting != 'world' ? 'hidden' : ''}`)
+        != h.icon('lock-open')
+      if !options.hideToggle
+        div.absolute.dropdown.hidden
+          select(id="privacy-toggle" value=`${privacySetting}`)
+            option(value="trustedUsers" selected=privacySetting === 'trustedUsers') Trusted Users
+            option(value="onlyMe" selected=privacySetting === 'onlyMe') Only Me
+            option(value="world" selected=privacySetting === 'world') Public

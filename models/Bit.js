@@ -22,6 +22,12 @@ const bitSchema = new mongoose.Schema({
   },
   prompt: {
     type: String
+  },
+  privacy: {
+    type: String,
+    default: "trustedUsers",
+    enum: ["trustedUsers", "world", "onlyMe"],
+    required: 'You need to provide privacy options'
   }
 }, {
   toJSON: { virtuals: true },
@@ -29,7 +35,8 @@ const bitSchema = new mongoose.Schema({
 });
 
 bitSchema.pre('save', async function(next) {
-  console.log(this.content)
+
+  // Any fields that are not required, but need to have values, are set here
   this.name = this.name || this.content.split(' ').slice(0,4).join(' ')
 
   if (!this.isModified('name')) {

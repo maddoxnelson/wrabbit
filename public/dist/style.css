@@ -6,7 +6,8 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Playfair Display"; }
+  font-family: "Playfair Display";
+  line-height: 1.3em; }
 
 h2 {
   font-size: 1.2em;
@@ -33,6 +34,7 @@ textarea {
   padding: 10px;
   outline: 0; }
 
+ul,
 ol,
 li {
   list-style-type: none;
@@ -164,6 +166,17 @@ body {
   font-family: "Source Sans Pro";
   font-size: 18px; }
 
+.absolute {
+  position: absolute; }
+
+.relative {
+  position: relative; }
+
+.dropdown {
+  left: 10px;
+  top: 100%;
+  z-index: 1; }
+
 .spaced.spaced-top.spaced-lg {
   margin-top: 20px; }
 
@@ -190,6 +203,15 @@ body {
 
 .spaced.spaced-right.spaced-sm {
   margin-right: 10px; }
+
+.spaced.spaced-left.spaced-lg {
+  margin-left: 20px; }
+
+.spaced.spaced-left.spaced-md {
+  margin-left: 15px; }
+
+.spaced.spaced-left.spaced-sm {
+  margin-left: 10px; }
 
 .pad.pad-left.pad-lg {
   padding-left: 20px; }
@@ -225,6 +247,10 @@ body {
   font-size: 22px;
   font-family: "Playfair Display"; }
 
+.font-bold {
+  font-weight: 600;
+  letter-spacing: .6px; }
+
 a.unstyled {
   text-decoration: none;
   color: #000; }
@@ -242,11 +268,30 @@ button, .button {
   button:hover, .button:hover {
     background: #6d9dc5; }
 
+.icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer; }
+
+.icon.avatar {
+  border-radius: 50%; }
+
+.icon.logo:hover path,
+.icon.logo:hover polygon {
+  fill: #ffec5e; }
+
+.icon.logo svg {
+  height: 40px; }
+
 .icon svg {
-  width: 30px; }
+  height: 25px; }
 
 nav {
-  background: #4b49c6; }
+  background: #4b49c6;
+  overflow: hidden;
+  font-family: "Playfair Display";
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.16), 0 1px 1px rgba(0, 0, 0, 0.23); }
   nav a {
     color: #eff5fc; }
     nav a:visited {
@@ -255,7 +300,11 @@ nav {
         color: #ffec5e; }
     nav a:hover {
       color: #ffec5e; }
+  nav ul {
+    padding: 10px 0; }
   nav li {
-    width: 100px;
-    list-style-type: none;
+    font-size: 1.1em;
+    padding: 0 20px;
     text-align: center; }
+    nav li:first-child {
+      padding: 0 0 0 20px; }
