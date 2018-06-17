@@ -97,7 +97,10 @@ exports.showBitsByGenre = async (req, res) => {
 
 exports.getBitsByAuthor = async (req, res, next) => {
   const user = await User.findOne({ slug: req.params.slug });
-  const bits = await Bit.find({ author: user._id })
+  // TODO if I am considered a trustedUser to this author, show me all their not Only Me bits
+  const bits = await Bit.find(
+    { author: user._id, privacy: 'world' }
+  )
 
   req.user = user;
   req.bits = bits
