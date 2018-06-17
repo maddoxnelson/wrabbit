@@ -1,0 +1,4 @@
+mixin editIcons(bit = {})
+  +privacy(bit.privacy)
+  div(class="icon delete flex-container-row justify-center align-items-center" data-link=`/bit/delete/${bit._id}`)
+    != h.icon('trash-can')
