@@ -14,11 +14,12 @@ exports.showUserFeedBits = async (req, res, next) => {
   const user = await User.findOne( { slug: req.user.slug } )
 
   const allMyBits = await Bit.find(
-    { author: user._id, private: [true, false] }
+    { author: user._id, privacy: ['trustedUsers', 'onlyMe', 'world'] }
   )
 
+  // TODO This will show all people's public bits, but should also check if the user is one of their trusted users.
   const otherPeoplesPublicBits = await Bit.find(
-    { author: { $ne: user._id }, private: false }
+    { author: { $ne: user._id }, privacy: 'world' }
   )
 
   const bits = [...allMyBits, ...otherPeoplesPublicBits]
@@ -29,7 +30,7 @@ exports.showUserFeedBits = async (req, res, next) => {
 exports.getBits = async (req, res) => {
 
   const bits = await Bit.find(
-    { private: false }
+    { privacy: 'world' }
   )
 
   res.render('bits', { title: 'Welcome to Wrabbit.', bits });

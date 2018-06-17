@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_bitCard
+include mixins/_lock
 
 block content
   .inner
@@ -10,8 +11,7 @@ block content
           if user && bit.author.equals(user._id)
             a(class="icon flex-container-row justify-center align-items-center" href=`/bits/${bit._id}/edit`)
               != h.icon('pencil')
-            div(class="icon delete flex-container-row justify-center align-items-center" data-link=`/bit/delete/${bit._id}`)
-              != h.icon('trash-can')
+            +lock(bit.privacy, { hideToggle: true })
         h1.flex-container-row.justify-center.txt-center= bit.name
         a(href=`/author/${user.slug}`)
           h2.flex-container-row.justify-center= bit.author.name
