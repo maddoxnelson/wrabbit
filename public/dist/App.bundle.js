@@ -111,6 +111,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.expandTextArea = expandTextArea;
 exports.deleteWarning = deleteWarning;
+exports.changePrivacy = changePrivacy;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
@@ -140,8 +141,34 @@ function deleteWarning() {
   deleteBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       var confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.');
-      if (confirm) deleteAndRedirect(e.target.dataset.link);
+      if (confirm) deleteAndRedirect(btn.dataset.link);
     });
+  });
+}
+
+function changePrivacy() {
+  var lockBtns = [].concat(_toConsumableArray(document.querySelectorAll('.lock-item')));
+  var privacyToggle = document.querySelector('#privacy-toggle');
+  var privacyForm = document.querySelector('#privacy-form');
+
+  if (!privacyToggle) return;
+  lockBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      privacyToggle.parentNode.classList.toggle('hidden');
+    });
+  });
+
+  privacyToggle.addEventListener('change', function (e) {
+    privacyForm.value = e.target.value;
+    privacyToggle.parentNode.classList.toggle('hidden');
+
+    if (privacyForm.value !== 'world') {
+      document.querySelector('.lock-open').classList.add('hidden');
+      document.querySelector('.lock-closed').classList.remove('hidden');
+    } else {
+      document.querySelector('.lock-open').classList.remove('hidden');
+      document.querySelector('.lock-closed').classList.add('hidden');
+    }
   });
 }
 
@@ -178,6 +205,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _lengthSprint2.default)();
 (0, _editorHelpers.expandTextArea)();
 (0, _prompt.prompt)();
+(0, _editorHelpers.changePrivacy)();
 
 /***/ }),
 /* 3 */
