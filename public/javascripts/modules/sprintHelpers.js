@@ -7,6 +7,7 @@ export function loadInExistingBit() {
   const bitTitleBox = document.querySelector('#bit-title')
   const bitContentBox = document.querySelector('#bit-content')
   const lengthBtns = [...document.querySelectorAll('.length-sprint')];
+  const timedBtns = [...document.querySelectorAll('.timed-sprint')];
   const bitForm = document.querySelector('#bit');
 
   async function getBitsByAuthor(url) {
@@ -30,8 +31,6 @@ export function loadInExistingBit() {
     bitTitleBox.value = bit.name
     bitContentBox.value = bit.content
     bitForm.setAttribute('action',`/write/${bit._id}`)
-
-
 
     lengthBtns.forEach(btn => {
       btn.dataset.value = parseInt(btn.dataset.value) + bit.word_count

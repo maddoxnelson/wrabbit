@@ -475,6 +475,7 @@ function loadInExistingBit() {
   var bitTitleBox = document.querySelector('#bit-title');
   var bitContentBox = document.querySelector('#bit-content');
   var lengthBtns = [].concat(_toConsumableArray(document.querySelectorAll('.length-sprint')));
+  var timedBtns = [].concat(_toConsumableArray(document.querySelectorAll('.timed-sprint')));
   var bitForm = document.querySelector('#bit');
 
   loadBtn.addEventListener('click', function (e) {
