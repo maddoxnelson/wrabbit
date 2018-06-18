@@ -6,6 +6,7 @@ import lengthSprint from './modules/lengthSprint';
 import { expandTextArea, deleteWarning, changePrivacy } from './modules/editorHelpers';
 import { prompt } from './modules/prompt';
 import { flashClickHandler } from './modules/flash'
+import { loadInExistingBit } from './modules/sprintHelpers'
 
 deleteWarning()
 flashClickHandler();
@@ -14,3 +15,4 @@ lengthSprint();
 expandTextArea();
 prompt();
 changePrivacy();
+loadInExistingBit();

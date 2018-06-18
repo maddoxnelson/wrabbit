@@ -49,6 +49,17 @@ router.get('/author/:slug',
   catchErrors(bitController.getBitsByAuthor)
 );
 
+// JSON API for bits from author
+router.get('/api/bits/:slug',
+  authController.isLoggedIn,
+  catchErrors(bitController.getJSONBitsByAuthor)
+)
+
+router.get('/api/bit/:id',
+  authController.isLoggedIn,
+  catchErrors(bitController.apiGetSingleBit)
+)
+
 // User and authentication routes
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);

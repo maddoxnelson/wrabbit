@@ -108,3 +108,28 @@ exports.getBitsByAuthor = async (req, res, next) => {
   res.render('author', { title: 'Author page', user, bits });
 
 }
+
+// TODO shrink the output of this API to just produce the bare minimum -- Bit title and ID, I think
+exports.getJSONBitsByAuthor = async ( req, res ) => {
+  const user = await User.findOne(
+    { slug: req.params.slug }
+  )
+  if (!user) res.redirect('/')
+
+  const bits = await Bit.find(
+    { author: user._id },
+    { name: 1 }
+  )
+
+  if (user._id.toString() === req.user._id.toString()) {
+    res.json(bits)
+  } else {
+    res.redirect('/')
+  }
+}
+
+exports.apiGetSingleBit = async (req, res) => {
+  const bit = await Bit.find({ _id: req.params.id })
+
+  res.json(bit)
+}
