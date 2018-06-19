@@ -27,15 +27,19 @@ button, .button {
     border-radius: 50%;
   }
 
-  &.logo {
+  &.color-svg {
 
     &:hover {
 
       path,
       polygon {
         fill: $maize;
+        stroke: $maize;
       }
     }
+  }
+
+  &.logo {
 
     svg {
       height: 40px;
