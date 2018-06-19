@@ -3,6 +3,8 @@ extends ../layout
 include ../mixins/_button
 include ../mixins/_clock
 include ../mixins/_bitForm
+include ../mixins/_existingBit
+include ../mixins/_prompt
 
 block content
   .inner
@@ -29,3 +31,7 @@ block content
         div.flex-container-column.justify-center
           //- TODO from will need to be modified to work perfectly with a sprint
           +bitForm({}, { content: 'hidden', submit: 'hidden' })
+        div.flex-container-row.justify-center
+          .card-wrapper.card.card-full.flex-container-row.justify-space-around.flex-wrap.align-items-center
+            +existingBit(user)
+            +prompt()

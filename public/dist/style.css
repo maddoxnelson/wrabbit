@@ -160,6 +160,9 @@ body {
 
 .hidden {
   display: none; }
+  @media (max-width: 700px) {
+    .hidden-mobile {
+      display: none; } }
 
 .flash-messages {
   background: #ffec5e;
@@ -247,6 +250,10 @@ body {
   font-size: 22px;
   font-family: "Playfair Display"; }
 
+.small-font {
+  font-size: 14px;
+  font-family: "Playfair Display"; }
+
 .font-bold {
   font-weight: 600;
   letter-spacing: .6px; }
@@ -276,9 +283,10 @@ button, .button {
 .icon.avatar {
   border-radius: 50%; }
 
-.icon.logo:hover path,
-.icon.logo:hover polygon {
-  fill: #ffec5e; }
+.icon.color-svg:hover path,
+.icon.color-svg:hover polygon {
+  fill: #ffec5e;
+  stroke: #ffec5e; }
 
 .icon.logo svg {
   height: 40px; }

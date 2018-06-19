@@ -18,5 +18,8 @@ block content
         each line, i in h.processNewLines(bit.content)
           p= line
         //- pre= h.dump(bit)
+    .card.card-full
+      div.flex-container-column
         h3 Stats:
-        pre #{bit.content.split(' ').length} words
+        p.small-font Count: #{bit.content.split(' ').length} words
+        p.small-font Prompt: #{bit.prompt}

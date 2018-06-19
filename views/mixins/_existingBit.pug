@@ -1,0 +1,4 @@
+mixin existingBit(user)
+  div.flex-container-column
+    button(id="load-in-bit" data-api=`/api/bits/${user.slug}`) Load in an exiting bit
+    select.hidden#bit-chooser

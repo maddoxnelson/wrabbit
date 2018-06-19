@@ -1,13 +1,19 @@
 nav.flex-container-row.justify-space-between.font-bold
   ul.flex-container-row
     li.flex-container-row.align-items-center.justify-center 
-      a(class="icon logo flex-container-row justify-center align-items-center spaced spaced-right spaced-sm" href=`/`)
+      a(class="icon logo color-svg flex-container-row justify-center align-items-center spaced spaced-right spaced-lg" href=`/`)
         != h.icon('wrabbit-icon-white')
       if user
-        a(href="/write" alt="Latest Bits") Write Bit
+        a(href="/write" alt="Latest Bits" class="flex-container-row align-items-center")
+          div.icon.color-svg.flex-container-row.justify-center.align-items-center.spaced.spaced-right.spaced-sm 
+            != h.icon('write')
+          div.hidden-mobile Write
     if user
       li.flex-container-row.align-items-center.justify-center
-        a(href="/sprint" alt="Word sprint") Word Sprint
+        a(href="/sprint" alt="Word sprint" class="flex-container-row align-items-center")
+          div.icon.color-svg.flex-container-row.justify-center.align-items-center.spaced.spaced-right.spaced-sm 
+            != h.icon('sprint')
+          div.hidden-mobile Sprint
   if user
     ul.flex-container-row
       ul.flex-container-row
@@ -15,7 +21,10 @@ nav.flex-container-row.justify-space-between.font-bold
           a.flex-container-row.align-items-center(href=`/author/${user.slug}`)
             img.icon.avatar(src=user.gravatar + '&d=retro')
         li.flex-container-row.align-items-center.justify-center
-          a(href="/logout" alt="Log out") Log out
+          a(href="/logout" alt="Log out" class="flex-container-row align-items-center color-svg")
+            div.icon.color-svg.flex-container-row.justify-center.align-items-center 
+              != h.icon('log-out')
+            div.hidden-mobile Log out
   else
     ul.flex-container-row
       li.flex-container-row.align-items-center.justify-center
