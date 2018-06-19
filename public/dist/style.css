@@ -81,9 +81,6 @@ textarea {
   @media (max-width: 700px) {
     .card {
       width: 100%; } }
-  .card.shaded {
-    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
   .card.gradient {
     background: -webkit-gradient(linear, left top, left bottom, color-stop(80%, #e3edd9), color-stop(120%, #4f4f4c));
     background: linear-gradient(to bottom, #e3edd9 80%, #4f4f4c 120%); }
@@ -168,6 +165,10 @@ body {
   background: #ffec5e;
   font-family: "Source Sans Pro";
   font-size: 18px; }
+
+.shaded {
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
 
 .absolute {
   position: absolute; }
@@ -316,3 +317,22 @@ nav {
     text-align: center; }
     nav li:first-child {
       padding: 0 0 0 20px; }
+
+.masonry {
+  -webkit-column-count: 1;
+          column-count: 1; }
+  @media (min-width: 700px) {
+    .masonry {
+      -webkit-column-count: 3;
+              column-count: 3;
+      -webkit-column-gap: 1em;
+              column-gap: 1em; } }
+  .masonry .brick {
+    margin: 0 0 1em;
+    width: 100%;
+    padding: 20px;
+    display: inline-block;
+    background: #eff5fc;
+    border-radius: 5px;
+    font-size: 20px;
+    line-height: 25px; }
