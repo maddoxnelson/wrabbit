@@ -23,6 +23,10 @@ body {
   font-size: 18px;
 }
 
+.shaded {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
 .absolute {
   position: absolute;
 }

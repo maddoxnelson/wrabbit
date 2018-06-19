@@ -12,8 +12,8 @@ block content
     h2.txt-center.txt-light-green Choose a length, start writing. We'll save as soon as you hit your sprint goal.
   .inner
     .card-wrapper.flex-container-row.flex-wrap
-      div#length.bit.card.shaded.card-wrapper.flex-container-row.justify-center.flex-wrap.spaced.spaced-right.spaced-lg
-        .bit.shaded.flex-container-row.justify-center.flex-wrap
+      div#length.bit.card.card-wrapper.flex-container-row.justify-center.flex-wrap.spaced.spaced-right.spaced-lg
+        .bit.flex-container-row.justify-center.flex-wrap
           ol.flex-container-column.align-items-center
             li.flex-container-row.justify-center.spaced.spaced-bottom.spaced-sm Pick a length
             li.flex-container-row.justify-center.spaced.spaced-bottom.spaced-sm
@@ -26,7 +26,7 @@ block content
               +button('1000', 'words', 'length-sprint')
         //-.bit.card.card-wrapper.flex-container-row.justify-center.flex-wrap
           +wordCounter()
-      .bit.shaded.flex-fill.spaced.spaced-right.spaced-lg
+      .bit.flex-fill.spaced.spaced-right.spaced-lg
         div.flex-container-column.justify-center
           //- TODO from will need to be modified to work perfectly with a sprint
           +bitForm({}, { content: 'hidden', submit: 'hidden' })
