@@ -47,7 +47,7 @@ exports.editBit = async (req, res) => {
   confirmOwner(bit, req.user);
 
   // 3. render out the edit form so user can update their bit.
-  res.render('editBit', { title: `Edit ${bit.name}`, bit })
+  res.render('editBit', { title: `Edit "${bit.name}"`, bit })
 }
 
 exports.deleteBit = async (req, res) => {
