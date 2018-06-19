@@ -5,8 +5,8 @@ mixin bitForm(bit = {}, options = { submit: ''})
   .card-wrapper.card.card-full.flex-container-row.justify-center.flex-wrap
     if bit.privacy
       +editIcons(bit)
-    .bit.card.card-full
-      form(id="bit" action=`/write/${bit._id || ''}` autocomplete="off" onsubmit="this.disabled = true" onclick="this.disabled = true" method="POST" class="card card-full justify-center")
+    .bit.card-full
+      form(id="bit" action=`/write/${bit._id || ''}` autocomplete="off" onsubmit="this.disabled = true" onclick="this.disabled = true" method="POST" class="card-full justify-center")
         div.flex-container-column.align-items-center
           textarea(id="bit-title" name="name" class="txt-center title" placeholder="Write your title here" value=bit.name)= bit.name
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-md
