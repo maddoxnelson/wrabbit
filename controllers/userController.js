@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = mongoose.model("User");
+const Bit = mongoose.model("Bit")
 const promisify = require('es6-promisify');
 
 exports.loginForm = (req, res) => {
@@ -39,3 +40,26 @@ exports.register = async (req, res, next) => {
   await register(user, req.body.password);
   next(); // pass to authController.login
 };
+
+exports.apiGetUsers = async (req, res) => {
+  const users = await User.find({ })
+
+  res.json(users)
+}
+
+exports.trustOrUntrustUser = async (req, res) => {
+  const trustedUsers = req.user.trustedUsers.map(obj => obj.toString())
+  const userIsTrusted = trustedUsers.includes(req.params.id)
+  const operator = userIsTrusted ? '$pull' : '$addToSet';
+  const user = await User
+      .findByIdAndUpdate(req.user._id,
+        { [operator]: { trustedUsers: req.params.id }},
+        { new: true }
+      )
+
+  const flashText = userIsTrusted ? 'untrusted' : 'trusted';
+
+  req.flash('success', `You have ${flashText} this user!`);
+
+  res.redirect('back');
+}

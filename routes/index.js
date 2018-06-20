@@ -60,6 +60,16 @@ router.get('/api/bit/:id',
   catchErrors(bitController.apiGetSingleBit)
 )
 
+router.get('/api/users',
+  authController.isLoggedIn,
+  catchErrors(userController.apiGetUsers)
+)
+
+router.get('/user/trust/:id',
+  authController.isLoggedIn,
+  catchErrors(userController.trustOrUntrustUser)
+)
+
 // User and authentication routes
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);

@@ -1,0 +1,19 @@
+.masonry {
+  column-count: 1;
+
+  @media (min-width: 700px) {
+    column-count: 3;
+    column-gap: 1em;
+  }
+
+  .brick {
+    margin: 0 0 1em;
+    width: 100%;
+    padding: 20px;
+    display: inline-block;
+    background: $alice-blue;
+    border-radius: 5px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
