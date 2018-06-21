@@ -1,5 +1,11 @@
 mixin bitCard(bit = {})
   .bit.brick.shaded
+    if bit.privacy === 'trustedUsers'
+      div ✅ Trusted!
+    else if bit.privacy === 'world'
+      div 🌎 Public!
+    else 
+      div 👁️ Only you
     div.flex-container-row.align-items-center.justify-center
       h2.flex-container-row.txt-center
         a( href=`../bit/${bit.slug}`) #{bit.name}
