@@ -22,7 +22,18 @@ exports.showUserFeedBits = async (req, res, next) => {
     { author: { $ne: user._id }, privacy: 'world' }
   )
 
-  const bits = [...allMyBits, ...otherPeoplesPublicBits]
+  // I need to know whose trustedUser objects I am in
+  const usersWhoTrustMe = await User.find(
+    { trustedUsers: { $all: [user._id] } }
+  )
+
+  const trustedUserArray = usersWhoTrustMe.map(user => user._id.toString())
+
+  const trustedUserBits = await Bit.find(
+    { author: trustedUserArray, privacy: 'trustedUsers' }
+  )
+
+  const bits = [...allMyBits, ...otherPeoplesPublicBits, ...trustedUserBits]
 
   res.render('bits', { title: 'Welcome to Wrabbit.', bits });
 }
