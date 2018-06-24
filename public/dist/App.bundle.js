@@ -478,11 +478,13 @@ function loadInExistingBit() {
   var timedBtns = [].concat(_toConsumableArray(document.querySelectorAll('.timed-sprint')));
   var bitForm = document.querySelector('#bit');
 
+  if (!loadBtn) return;
   loadBtn.addEventListener('click', function (e) {
     var url = e.target.dataset.api;
     getBitsByAuthor(url);
   });
 
+  if (!bitChooser) return;
   bitChooser.addEventListener('change', function (e) {
     getSingleBit('/api/bit/' + e.target.value);
   });
@@ -623,14 +625,22 @@ exports.changePrivacy = changePrivacy;
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function autosize(el) {
+  console.log(el.scrollHeight);
   el.style.height = el.scrollHeight + 'px';
 }
 
+function onFocus(el) {}
+
 function expandTextArea() {
   var textareas = [].concat(_toConsumableArray(document.querySelectorAll('textarea')));
-  textareas.forEach(function (area) {
-    return autosize(area);
-  });
+
+  // This is annoying, but seems to be required in order for this to be added to the animation queue properly
+  setTimeout(function () {
+    textareas.forEach(function (area) {
+      return autosize(area);
+    });
+  }, 0);
+
   textareas.forEach(function (area) {
     return area.addEventListener('keydown', function (e) {
       autosize(e.target);

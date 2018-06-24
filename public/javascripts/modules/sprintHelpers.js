@@ -38,11 +38,13 @@ export function loadInExistingBit() {
 
   }
 
+  if (!loadBtn) return
   loadBtn.addEventListener('click', e => {
     const url = e.target.dataset.api
     getBitsByAuthor(url)
   })
 
+  if (!bitChooser) return
   bitChooser.addEventListener('change', e => {
     getSingleBit(`/api/bit/${e.target.value}`)
   })
