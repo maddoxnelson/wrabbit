@@ -181,6 +181,11 @@ body {
   top: 100%;
   z-index: 1; }
 
+@media (max-width: 700px) {
+  .no-mobile-side-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important; } }
+
 .spaced.spaced-top.spaced-lg {
   margin-top: 20px; }
 

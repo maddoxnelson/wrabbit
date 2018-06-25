@@ -2,6 +2,14 @@ $spaced-lg: 20px;
 $spaced-md: 15px;
 $spaced-sm: 10px;
 
+.no-mobile-side-margin {
+
+  @media (max-width: 700px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
 .spaced {
 
   &.spaced-top {
