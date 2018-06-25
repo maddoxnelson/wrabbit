@@ -2,7 +2,7 @@ include _privacy
 include _editIcons
 
 mixin bitForm(bit = {}, options = { submit: ''})
-  .card-wrapper.card.card-full.flex-container-row.justify-center.flex-wrap
+  .card-wrapper.card.card-full.flex-container-row.justify-center.flex-wrap.shaded
     if bit.privacy
       +editIcons(bit)
     .bit.card-full

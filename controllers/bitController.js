@@ -22,7 +22,18 @@ exports.showUserFeedBits = async (req, res, next) => {
     { author: { $ne: user._id }, privacy: 'world' }
   )
 
-  const bits = [...allMyBits, ...otherPeoplesPublicBits]
+  // I need to know whose trustedUser objects I am in
+  const usersWhoTrustMe = await User.find(
+    { trustedUsers: { $all: [user._id] } }
+  )
+
+  const trustedUserArray = usersWhoTrustMe.map(user => user._id.toString())
+
+  const trustedUserBits = await Bit.find(
+    { author: trustedUserArray, privacy: 'trustedUsers' }
+  )
+
+  const bits = [...allMyBits, ...otherPeoplesPublicBits, ...trustedUserBits]
 
   res.render('bits', { title: 'Welcome to Wrabbit.', bits });
 }
@@ -74,10 +85,36 @@ exports.updateBit = async (req, res) => {
   res.redirect(`/bit/${bit.slug}`)
 };
 
+exports.checkBitPrivacySettings = async (req, res, next) => {
+  const bit = await Bit.findOne({ slug: req.params.slug });
+
+  const bitIsPublic = bit.privacy === 'world'
+
+  if (bitIsPublic) return next()
+
+  if (!req.user) {
+    req.flash('success', `Hmmm, that bit either does not exist or you aren't authorized to read it.`);
+    res.redirect(`/`)
+  }
+
+  const user = await User.findOne({ _id: req.user._id })
+  const trustedUserString = bit.author.trustedUsers.map(obj => obj.toString())
+
+  const readerIsATrustedUser = trustedUserString.includes(user.id)
+  const readerIsTheUser = user.id === bit.author.id
+
+  if (readerIsTheUser || readerIsATrustedUser) {
+    return next()
+  }
+
+
+}
+
 exports.getBitBySlug = async (req, res, next) => {
   const bit = await Bit.findOne({ slug: req.params.slug });
 
   if (!bit) return next();
+
   res.render('bit', { title: `${bit.name}`, bit })
 }
 

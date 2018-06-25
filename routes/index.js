@@ -17,7 +17,9 @@ router.get('/write', bitController.addBit);
 
 router.get('/bits/:id/edit',catchErrors(bitController.editBit));
 
-router.get(`/bit/:slug`, catchErrors(bitController.getBitBySlug));
+router.get(`/bit/:slug`,
+  catchErrors(bitController.checkBitPrivacySettings),
+  catchErrors(bitController.getBitBySlug));
 
 router.get('/bit/delete/:id', catchErrors(bitController.deleteBit));
 
@@ -58,6 +60,16 @@ router.get('/api/bits/:slug',
 router.get('/api/bit/:id',
   authController.isLoggedIn,
   catchErrors(bitController.apiGetSingleBit)
+)
+
+router.get('/api/users',
+  authController.isLoggedIn,
+  catchErrors(userController.apiGetUsers)
+)
+
+router.get('/user/trust/:id',
+  authController.isLoggedIn,
+  catchErrors(userController.trustOrUntrustUser)
 )
 
 // User and authentication routes

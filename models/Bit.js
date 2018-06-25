@@ -25,7 +25,7 @@ const bitSchema = new mongoose.Schema({
   },
   privacy: {
     type: String,
-    default: "trustedUsers",
+    default: "onlyMe",
     enum: ["trustedUsers", "world", "onlyMe"],
     required: 'You need to provide privacy options'
   }

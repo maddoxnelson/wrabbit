@@ -1,10 +1,21 @@
 function autosize(el){
+  console.log(el.scrollHeight)
   el.style.height = `${el.scrollHeight}px`
+}
+
+function onFocus(el) {
+
 }
 
 export function expandTextArea() {
   const textareas = [...document.querySelectorAll('textarea')];
-  textareas.forEach(area => autosize(area))
+
+  // This is annoying, but seems to be required in order for this to be added to the animation queue properly
+  setTimeout(function(){
+    textareas.forEach(area => autosize(area))
+  },0)
+
+
   textareas.forEach(area => area.addEventListener('keydown', function(e) {
     autosize(e.target)
   }));
