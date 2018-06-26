@@ -1,0 +1,9 @@
+mixin trustedUser(bit = {}, user = {})
+  //- pre= h.dump(user)
+  if user && (user.id !== bit.author.id)
+    //- pre= h.dump(user)
+    - const trustedUserStrings = user.trustedUsers.map(obj => obj.toString())
+    - const trustedUserIcon = trustedUserStrings.includes(bit.author._id.toString()) ? 'trusted' : 'untrusted'
+    a.icon.flex-container-row.justify-center.align-items-center(href=`/user/trust/${bit.author._id}`)
+      != h.icon(`${trustedUserIcon}`)
+  

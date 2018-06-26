@@ -10,8 +10,10 @@ const { catchErrors } = require('../handlers/errorHandlers');
 module.exports = router;
 
 router.get('/',
+  catchErrors(bitController.getUser),
+  catchErrors(bitController.getPublicBits),
   catchErrors(bitController.showUserFeedBits),
-  catchErrors(bitController.getBits)
+  catchErrors(bitController.bringToHomePage)
 );
 router.get('/write', bitController.addBit);
 
@@ -38,7 +40,7 @@ router.get('/genre/:genre',
 
 // Word sprints
 router.get('/sprint',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   wordSprintController.chooseSprintMode
 )
 
@@ -53,22 +55,22 @@ router.get('/author/:slug',
 
 // JSON API for bits from author
 router.get('/api/bits/:slug',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(bitController.getJSONBitsByAuthor)
 )
 
 router.get('/api/bit/:id',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(bitController.apiGetSingleBit)
 )
 
 router.get('/api/users',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(userController.apiGetUsers)
 )
 
 router.get('/user/trust/:id',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(userController.trustOrUntrustUser)
 )
 
