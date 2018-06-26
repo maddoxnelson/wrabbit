@@ -8,9 +8,6 @@ exports.dump = (obj) => JSON.stringify(obj, null, 2);
 exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 
 exports.trimBit = (array, length) => {
-  console.log(array.slice(0, length))
-  console.log(length)
-
   return array.slice(0, length)
 }
 

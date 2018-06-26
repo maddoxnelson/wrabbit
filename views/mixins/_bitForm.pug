@@ -13,6 +13,6 @@ mixin bitForm(bit = {}, options = { submit: ''})
           textarea(id="bit-content" class=`${options.content}` name="content" placeholder="Write your bit here.")= bit.content
         div
           textarea.hidden(id="prompt-submit" name="prompt")
-        input.hidden(id="privacy-form" name="privacy" value=`${bit.privacy || 'trustedUsers'}`)
+        input.hidden(id="privacy-form" name="privacy" value=`${bit.privacy || 'onlyMe'}`)
         div.flex-container-column.align-items-center.spaced.spaced-top.spaced-lg
           button(type="submit" value="Save" class=`button ${options.submit}` ) Save

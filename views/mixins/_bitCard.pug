@@ -1,4 +1,6 @@
-mixin bitCard(bit = {})
+include _trustedUser
+
+mixin bitCard(bit = {}, user = {})
   .bit.brick.shaded
     if bit.privacy === 'trustedUsers'
       div ✅ Trusted!
@@ -9,8 +11,9 @@ mixin bitCard(bit = {})
     div.flex-container-row.align-items-center.justify-center
       h2.flex-container-row.txt-center
         a( href=`../bit/${bit.slug}`) #{bit.name}
-    h3.flex-container-row.justify-center
-      a(href=`/author/${bit.author.slug}`)= bit.author.name
+    h3.flex-container-row.justify-center.align-items-center
+      a(href=`/author/${bit.author.slug}`) #{bit.author.name}
+      +trustedUser(bit, user)
     //- pre= h.dump(bit)
     a(class="unstyled" href=`../bit/${bit.slug}`)
       each line, i in h.processNewLines(bit.content)

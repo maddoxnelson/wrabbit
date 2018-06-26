@@ -8,6 +8,12 @@ const confirmOwner = (bit, user) => {
   }
 };
 
+exports.getPublicBits = async (req, res, next) => {
+  const bits = await Bit.find({ privacy: 'world' })
+  req.bits = bits
+  next()
+}
+
 exports.showUserFeedBits = async (req, res, next) => {
   if (!req.user) return next()
 
@@ -35,17 +41,28 @@ exports.showUserFeedBits = async (req, res, next) => {
 
   const bits = [...allMyBits, ...otherPeoplesPublicBits, ...trustedUserBits]
 
-  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
+  req.bits = bits
+  next()
 }
 
-exports.getBits = async (req, res) => {
+exports.getUser = async (req, res, next) => {
+  if (!req.user) return next()
+  const user = await User.findOne({ _id: req.user.id })
+  req.user = user
+  next()
+}
 
-  const bits = await Bit.find(
-    { privacy: 'world' }
-  )
+exports.bringToHomePage = async (req, res) => {
+  const bits = req.bits
+  const user = req.user
 
-  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
-};
+  if (user) {
+    res.render('bits', { title: 'Welcome to Wrabbit.', bits, user });
+  } else {
+    res.render('bits', { title: 'Welcome to Wrabbit.', bits });
+  }
+
+}
 
 exports.addBit = (req, res) => {
   res.render('write', { title: 'Write a Bit.' });
