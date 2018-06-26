@@ -134,7 +134,12 @@ exports.getBitBySlug = async (req, res, next) => {
   res.render('bit', { title: `${bit.name}`, bit })
 }
 
-exports.createBit = async (req, res) => {
+exports.directToBitPage = async (req, res) => {
+  const bit = await Bit.findOne({ slug: req.params.slug })
+  res.redirect(`/bit/${bit.slug}`);
+}
+
+exports.createBit = async (req, res, next) => {
   // TODO carry through bit bits to give users a second chance to finish
   req.body.author = req.user._id;
   const bit = await (new Bit(req.body)).save();
