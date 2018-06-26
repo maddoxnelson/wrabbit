@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bitController = require('../controllers/bitController');
+const privacyController = require('../controllers/privacyController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const userDashController = require('../controllers/userDashController');
@@ -15,6 +16,7 @@ router.get('/',
   catchErrors(bitController.showUserFeedBits),
   catchErrors(bitController.bringToHomePage)
 );
+
 router.get('/write', bitController.addBit);
 
 router.get('/bits/:id/edit',catchErrors(bitController.editBit));
@@ -22,6 +24,14 @@ router.get('/bits/:id/edit',catchErrors(bitController.editBit));
 router.get(`/bit/:slug`,
   catchErrors(bitController.checkBitPrivacySettings),
   catchErrors(bitController.getBitBySlug));
+
+router.get(`/bits/privacy`,
+  authController.requiredLogin,
+  catchErrors(privacyController.getMyOnlyMeBits),
+  catchErrors(privacyController.getMyTrustedUserBits),
+  catchErrors(privacyController.getMyPublicBits),
+  catchErrors(privacyController.directToPrivacyPage)
+)
 
 router.get('/bit/delete/:id', catchErrors(bitController.deleteBit));
 
