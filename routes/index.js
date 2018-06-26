@@ -33,6 +33,13 @@ router.get(`/bits/privacy`,
   catchErrors(privacyController.directToPrivacyPage)
 )
 
+router.get(`/bit/privacy/update/:slug/:privacy`,
+    authController.requiredLogin,
+    catchErrors(privacyController.userIsAuthorOfThisBit),
+    catchErrors(privacyController.updateBitPrivacy),
+    catchErrors(bitController.directToBitPage)
+)
+
 router.get('/bit/delete/:id', catchErrors(bitController.deleteBit));
 
 router.post('/write',

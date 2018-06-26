@@ -25,3 +25,34 @@ exports.directToPrivacyPage = async (req, res, next) => {
 
   res.render('privateBits', { title: "Bits sorted by privacy", onlyMeBits, trustedUserBits, publicBits })
 }
+
+// Verify that the user is the author of the bit they are attempting to modify
+exports.userIsAuthorOfThisBit = async (req, res, next) => {
+  const bit = await Bit.findOne({ slug: req.params.slug })
+  if (req.user.id !== bit.author.id) {
+    req.flash('success', `You are not authorized to change the setting on this bit.`);
+    res.redirect(`/bit/${req.params.slug}`)
+  }
+  next()
+}
+
+exports.updateBitPrivacy = async (req, res, next) => {
+
+  // TODO hook this up to the lock icon button on every page.
+  const newPrivacySettings = {
+    privacy: req.params.privacy
+  }
+
+  const bit = await Bit.findOneAndUpdate(
+    { slug: req.params.slug }, // query
+    newPrivacySettings,
+    { // options
+      new: true,          // return new bit, not old bit
+      runValidators: true // force our model to run required validators against this
+    }
+  ).exec();
+
+  req.flash('success', `Successfully updated ${bit.name}`);
+  res.redirect(`/bit/${bit.slug}`)
+
+}
