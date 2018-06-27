@@ -4,7 +4,7 @@ export const customCallbackLibrary = {
     const lockIcon = element.closest('.lock-item')
     const openLock = lockIcon.querySelector('.lock-open')
     const closedLock = lockIcon.querySelector('.lock-closed')
-    
+
     if (bit.privacy === 'world') {
       openLock.classList.remove('hidden')
       closedLock.classList.add('hidden')
@@ -12,5 +12,9 @@ export const customCallbackLibrary = {
       openLock.classList.add('hidden')
       closedLock.classList.remove('hidden')
     }
+  },
+  updateTrustIcon: (options) => {
+    const { data, element } = options
+    console.log(data)
   }
 }
