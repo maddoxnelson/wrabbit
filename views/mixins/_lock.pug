@@ -1,13 +1,17 @@
-mixin lock(privacySetting = 'trustedUsers', options = { hideToggle: false })
-  abbr(title=`This is a ${privacySetting != 'world' ? ' private ' : ' public '} bit. It will display for ${privacySetting != 'world' ? 'you and your trusted friends.' : 'everyone.'} To change your privacy settings, go to the Edit page.`)
-    div(class=`icon lock relative flex-container-row justify-center align-items-center`)
-      div(class=`lock-item lock-closed flex-container-row justify-center align-items-center ${privacySetting != 'world' ? '' : 'hidden'}`)
-        != h.icon('lock-closed')
-      div(class=`lock-item lock-open flex-container-row justify-center align-items-center ${privacySetting != 'world' ? 'hidden' : ''}`)
-        != h.icon('lock-open')
-      if !options.hideToggle
-        div.absolute.dropdown.hidden
-          select(id="privacy-toggle" value=`${privacySetting}`)
-            option(value="trustedUsers" selected=privacySetting === 'trustedUsers') Trusted Users
-            option(value="onlyMe" selected=privacySetting === 'onlyMe') Only Me
-            option(value="world" selected=privacySetting === 'world') Public
+mixin lock(bit = {}, options = { hideToggle: false })
+  div(class=`icon lock lock-item relative flex-container-row justify-center align-items-center`)
+    div(class=`lock-open flex-container-row justify-center align-items-center ${bit.privacy != 'world' ? 'hidden' : ''}`)
+      != h.icon('lock-open')
+    div(class=`lock-closed flex-container-row justify-center align-items-center ${bit.privacy != 'world' ? '' : 'hidden'}`)
+      != h.icon('lock-closed')
+    ul.flex-container-row.justify-center.align-items-center.absolute.txt-center.dropdown.hidden
+      li.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
+        div.api.flex-container-row.justify-center.align-items.center(data-url=`/bit/privacy/update/${bit.slug}/onlyMe` data-payload-key="privacy" data-payload-value="onlyMe" data-callback="updateLockIcon")
+          != `👁️ Only you`
+      li.api.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
+        div.flex-container-row.justify-center.align-items.center(data-url=`/bit/privacy/update/${bit.slug}/trustedUsers` data-payload-key="privacy" data-payload-value="trustedUsers" data-callback="updateLockIcon")
+          != `✅ Trusted Users`
+      li.api.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
+        div.flex-container-row.justify-center.align-items.center(data-url=`/bit/privacy/update/${bit.slug}/world` data-payload-key="privacy" data-payload-value="world" data-callback="updateLockIcon")
+          != `🌎 Public`
+        

@@ -12,7 +12,7 @@ block content
           if user && bit.author.equals(user._id)
             a(class="icon flex-container-row justify-center align-items-center" href=`/bits/${bit._id}/edit`)
               != h.icon('pencil')
-            +lock(bit.privacy, { hideToggle: true })
+            +privacy(bit)
           if user && (user.id !== bit.author.id)
             +trustedUser(bit, user)
         h1.flex-container-row.justify-center.txt-center= bit.name
