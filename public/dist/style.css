@@ -176,11 +176,6 @@ body {
 .relative {
   position: relative; }
 
-.dropdown {
-  left: 10px;
-  top: 100%;
-  z-index: 1; }
-
 @media (max-width: 700px) {
   .no-mobile-side-margin {
     margin-left: 0 !important;
@@ -222,6 +217,30 @@ body {
 .spaced.spaced-left.spaced-sm {
   margin-left: 10px; }
 
+.pad.pad-top.pad-lg {
+  padding-top: 20px; }
+
+.pad.pad-top.pad-md {
+  padding-top: 15px; }
+
+.pad.pad-top.pad-sm {
+  padding-top: 10px; }
+
+.pad.pad-top.pad-xs {
+  padding-top: 5px; }
+
+.pad.pad-bottom.pad-lg {
+  padding-bottom: 20px; }
+
+.pad.pad-bottom.pad-md {
+  padding-bottom: 15px; }
+
+.pad.pad-bottom.pad-sm {
+  padding-bottom: 10px; }
+
+.pad.pad-bottom.pad-xs {
+  padding-bottom: 5px; }
+
 .pad.pad-left.pad-lg {
   padding-left: 20px; }
 
@@ -231,6 +250,9 @@ body {
 .pad.pad-left.pad-sm {
   padding-left: 10px; }
 
+.pad.pad-left.pad-xs {
+  padding-left: 5px; }
+
 .pad.pad-right.pad-lg {
   padding-right: 20px; }
 
@@ -239,6 +261,9 @@ body {
 
 .pad.pad-right.pad-sm {
   padding-right: 10px; }
+
+.pad.pad-right.pad-xs {
+  padding-right: 5px; }
 
 .txt-center {
   text-align: center; }
@@ -341,3 +366,18 @@ nav {
     border-radius: 5px;
     font-size: 20px;
     line-height: 25px; }
+
+.dropdown {
+  top: 100%;
+  right: 0;
+  z-index: 1;
+  font-size: .7em;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background: #ffec5e;
+  border-radius: 5px;
+  font-family: "Playfair Display"; }
+  .dropdown li {
+    min-width: 150px; }
+    .dropdown li:hover {
+      background: #6d9dc5; }

@@ -629,8 +629,6 @@ function autosize(el) {
   el.style.height = el.scrollHeight + 'px';
 }
 
-function onFocus(el) {}
-
 function expandTextArea() {
   var textareas = [].concat(_toConsumableArray(document.querySelectorAll('textarea')));
 
@@ -665,27 +663,11 @@ function deleteWarning() {
 
 function changePrivacy() {
   var lockBtns = [].concat(_toConsumableArray(document.querySelectorAll('.lock-item')));
-  var privacyToggle = document.querySelector('#privacy-toggle');
-  var privacyForm = document.querySelector('#privacy-form');
 
-  if (!privacyToggle) return;
   lockBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
-      privacyToggle.parentNode.classList.toggle('hidden');
+      return btn.nextSibling.classList.toggle('hidden');
     });
-  });
-
-  privacyToggle.addEventListener('change', function (e) {
-    privacyForm.value = e.target.value;
-    privacyToggle.parentNode.classList.toggle('hidden');
-
-    if (privacyForm.value !== 'world') {
-      document.querySelector('.lock-open').classList.add('hidden');
-      document.querySelector('.lock-closed').classList.remove('hidden');
-    } else {
-      document.querySelector('.lock-open').classList.remove('hidden');
-      document.querySelector('.lock-closed').classList.add('hidden');
-    }
   });
 }
 
