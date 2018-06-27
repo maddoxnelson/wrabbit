@@ -34,8 +34,5 @@ export function deleteWarning() {
 
 export function changePrivacy() {
   const lockBtns = [...document.querySelectorAll('.lock-item')]
-
-  lockBtns.forEach(btn => {
-    btn.addEventListener('click', e => btn.nextSibling.classList.toggle('hidden'))
-  })
+  lockBtns.forEach(btn => btn.addEventListener('click', () => btn.querySelector('.dropdown').classList.toggle('hidden')))
 }

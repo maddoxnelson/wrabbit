@@ -1,0 +1,18 @@
+.dropdown {
+  top: 100%;
+  right: 0;
+  z-index: 1;
+  font-size: .7em;
+  flex-wrap: wrap;
+  background: $maize;
+  border-radius: 5px;
+  font-family: $primary-font;
+
+  li {
+    min-width: 150px;
+
+    &:hover {
+      background: $cerulean-frost;
+    }
+  }
+}

@@ -102,6 +102,15 @@ textarea {
       -ms-flex-direction: row;
           flex-direction: row; }
 
+.flex-container-row-reverse {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse; }
+
 .flex-container-column {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -32,6 +32,7 @@ exports.userIsAuthorOfThisBit = async (req, res, next) => {
   if (req.user.id !== bit.author.id) {
     req.flash('success', `You are not authorized to change the setting on this bit.`);
     res.redirect(`/bit/${req.params.slug}`)
+    return
   }
   next()
 }
@@ -52,7 +53,6 @@ exports.updateBitPrivacy = async (req, res, next) => {
     }
   ).exec();
 
-  req.flash('success', `Successfully updated ${bit.name}`);
-  res.redirect(`/bit/${bit.slug}`)
+  res.json(bit)
 
 }

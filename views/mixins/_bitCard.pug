@@ -3,13 +3,9 @@ include _privacy
 
 mixin bitCard(bit = {}, user = {})
   .bit.brick.shaded
-    if bit.privacy === 'trustedUsers'
-      div ✅ Trusted!
-    else if bit.privacy === 'world'
-      div 🌎 Public!
-    else 
-      div 👁️ Only you
-    +privacy(bit)
+    if user && bit.author.id === user.id
+      div.flex-container-row-reverse
+        +privacy(bit)
     div.flex-container-row.align-items-center.justify-center
       h2.flex-container-row.txt-center
         a( href=`../bit/${bit.slug}`) #{bit.name}

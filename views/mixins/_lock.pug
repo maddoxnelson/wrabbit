@@ -1,19 +1,17 @@
 mixin lock(bit = {}, options = { hideToggle: false })
-  div(class=`icon lock relative flex-container-row justify-center align-items-center`)
-    if bit.privacy === 'world'
-      div(class=`lock-item lock-open flex-container-row justify-center align-items-center ${bit.privacy != 'world' ? 'hidden' : ''}`)
-        != h.icon('lock-open')
-    else 
-      div(class=`lock-item lock-closed flex-container-row justify-center align-items-center ${bit.privacy != 'world' ? '' : 'hidden'}`)
-        != h.icon('lock-closed')
+  div(class=`icon lock lock-item relative flex-container-row justify-center align-items-center`)
+    div(class=`lock-open flex-container-row justify-center align-items-center ${bit.privacy != 'world' ? 'hidden' : ''}`)
+      != h.icon('lock-open')
+    div(class=`lock-closed flex-container-row justify-center align-items-center ${bit.privacy != 'world' ? '' : 'hidden'}`)
+      != h.icon('lock-closed')
     ul.flex-container-row.justify-center.align-items-center.absolute.txt-center.dropdown.hidden
       li.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
-        a.flex-container-row.justify-center.align-items.center(href=`/bit/privacy/update/${bit.slug}/onlyMe`)
+        div.api.flex-container-row.justify-center.align-items.center(data-url=`/bit/privacy/update/${bit.slug}/onlyMe` data-payload-key="privacy" data-payload-value="onlyMe" data-callback="updateLockIcon")
           != `👁️ Only you`
-      li.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
-        a.flex-container-row.justify-center.align-items.center(href=`/bit/privacy/update/${bit.slug}/trustedUsers`)
+      li.api.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
+        div.flex-container-row.justify-center.align-items.center(data-url=`/bit/privacy/update/${bit.slug}/trustedUsers` data-payload-key="privacy" data-payload-value="trustedUsers" data-callback="updateLockIcon")
           != `✅ Trusted Users`
-      li.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
-        a.flex-container-row.justify-center.align-items.center(href=`/bit/privacy/update/${bit.slug}/world`)
+      li.api.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs
+        div.flex-container-row.justify-center.align-items.center(data-url=`/bit/privacy/update/${bit.slug}/world` data-payload-key="privacy" data-payload-value="world" data-callback="updateLockIcon")
           != `🌎 Public`
         

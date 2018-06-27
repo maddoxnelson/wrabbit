@@ -663,10 +663,9 @@ function deleteWarning() {
 
 function changePrivacy() {
   var lockBtns = [].concat(_toConsumableArray(document.querySelectorAll('.lock-item')));
-
   lockBtns.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      return btn.nextSibling.classList.toggle('hidden');
+    return btn.addEventListener('click', function () {
+      return btn.querySelector('.dropdown').classList.toggle('hidden');
     });
   });
 }
@@ -1150,6 +1149,8 @@ var _flash = __webpack_require__(37);
 
 var _sprintHelpers = __webpack_require__(1);
 
+var _apiHelpers = __webpack_require__(39);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _editorHelpers.deleteWarning)();
@@ -1160,6 +1161,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _prompt.prompt)();
 (0, _editorHelpers.changePrivacy)();
 (0, _sprintHelpers.loadInExistingBit)();
+(0, _apiHelpers.api)();
 
 /***/ }),
 /* 11 */
@@ -3516,6 +3518,100 @@ function flashClickHandler() {
     }, 3000);
   });
 }
+
+/***/ }),
+/* 38 */,
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var callAPI = function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var _e$target$dataset, url, payloadKey, payloadValue, callback, data;
+
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _e$target$dataset = e.target.dataset, url = _e$target$dataset.url, payloadKey = _e$target$dataset.payloadKey, payloadValue = _e$target$dataset.payloadValue, callback = _e$target$dataset.callback;
+            _context.next = 3;
+            return (0, _axios2.default)(url).then(function (response) {
+              return response.data;
+            });
+
+          case 3:
+            data = _context.sent;
+
+            _customAPICallbacks.customCallbackLibrary[callback]({ data: data, element: e.target });
+
+          case 5:
+          case 'end':
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+
+  return function callAPI(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+exports.api = api;
+
+var _axios = __webpack_require__(15);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _customAPICallbacks = __webpack_require__(40);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function api() {
+  var apiTriggers = [].concat(_toConsumableArray(document.querySelectorAll('.api')));
+  apiTriggers.forEach(function (trigger) {
+    return trigger.addEventListener('click', callAPI);
+  });
+}
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var customCallbackLibrary = exports.customCallbackLibrary = {
+  updateLockIcon: function updateLockIcon(options) {
+    var bit = options.data,
+        element = options.element;
+
+    var lockIcon = element.closest('.lock-item');
+    var openLock = lockIcon.querySelector('.lock-open');
+    var closedLock = lockIcon.querySelector('.lock-closed');
+
+    if (bit.privacy === 'world') {
+      openLock.classList.remove('hidden');
+      closedLock.classList.add('hidden');
+    } else {
+      openLock.classList.add('hidden');
+      closedLock.classList.remove('hidden');
+    }
+  }
+};
 
 /***/ })
 /******/ ]);
