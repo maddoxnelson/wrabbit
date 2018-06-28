@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -72,7 +72,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var bind = __webpack_require__(4);
+var bind = __webpack_require__(5);
 var isBuffer = __webpack_require__(17);
 
 /*global toString:true*/
@@ -387,7 +387,7 @@ exports.showEditableForms = showEditableForms;
 
 var _editorHelpers = __webpack_require__(3);
 
-var _axios = __webpack_require__(15);
+var _axios = __webpack_require__(4);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -535,10 +535,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(7);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(7);
   }
   return adapter;
 }
@@ -606,7 +606,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = defaults;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 3 */
@@ -621,11 +621,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.expandTextArea = expandTextArea;
 exports.deleteWarning = deleteWarning;
 exports.changePrivacy = changePrivacy;
+exports.changeTrust = changeTrust;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function autosize(el) {
-  console.log(el.scrollHeight);
   el.style.height = el.scrollHeight + 'px';
 }
 
@@ -670,8 +670,26 @@ function changePrivacy() {
   });
 }
 
+function changeTrust() {
+  var trustBtns = [].concat(_toConsumableArray(document.querySelectorAll('.trust-item')));
+  trustBtns.forEach(function (btn) {
+    return btn.addEventListener('click', function () {
+      return btn.closest('.trust-parent').querySelector('.dropdown').classList.toggle('hidden');
+    });
+  });
+}
+
 /***/ }),
 /* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(16);
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -688,7 +706,7 @@ module.exports = function bind(fn, thisArg) {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -881,7 +899,7 @@ process.umask = function () {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -892,7 +910,7 @@ var settle = __webpack_require__(20);
 var buildURL = __webpack_require__(22);
 var parseHeaders = __webpack_require__(23);
 var isURLSameOrigin = __webpack_require__(24);
-var createError = __webpack_require__(7);
+var createError = __webpack_require__(8);
 var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(25);
 
 module.exports = function xhrAdapter(config) {
@@ -1059,10 +1077,10 @@ module.exports = function xhrAdapter(config) {
     request.send(requestData);
   });
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1086,7 +1104,7 @@ module.exports = function createError(message, config, code, request, response) 
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1097,7 +1115,7 @@ module.exports = function isCancel(value) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1123,17 +1141,17 @@ Cancel.prototype.__CANCEL__ = true;
 module.exports = Cancel;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(11);
-
 __webpack_require__(12);
 
-var _timedSprint = __webpack_require__(14);
+__webpack_require__(13);
+
+var _timedSprint = __webpack_require__(15);
 
 var _timedSprint2 = _interopRequireDefault(_timedSprint);
 
@@ -1149,7 +1167,7 @@ var _flash = __webpack_require__(37);
 
 var _sprintHelpers = __webpack_require__(1);
 
-var _apiHelpers = __webpack_require__(39);
+var _apiHelpers = __webpack_require__(38);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1162,15 +1180,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _editorHelpers.changePrivacy)();
 (0, _sprintHelpers.loadInExistingBit)();
 (0, _apiHelpers.api)();
+(0, _editorHelpers.changeTrust)();
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1875,10 +1894,10 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 function () {
   return this;
 }() || Function("return this")());
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14)(module)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1908,7 +1927,7 @@ module.exports = function (module) {
 };
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2017,15 +2036,6 @@ function timedSprint() {
 exports.default = timedSprint;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(16);
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2033,7 +2043,7 @@ module.exports = __webpack_require__(16);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(4);
+var bind = __webpack_require__(5);
 var Axios = __webpack_require__(18);
 var defaults = __webpack_require__(2);
 
@@ -2068,9 +2078,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(9);
+axios.Cancel = __webpack_require__(10);
 axios.CancelToken = __webpack_require__(32);
-axios.isCancel = __webpack_require__(8);
+axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -2222,7 +2232,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(7);
+var createError = __webpack_require__(8);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -2626,7 +2636,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(29);
-var isCancel = __webpack_require__(8);
+var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(2);
 var isAbsoluteURL = __webpack_require__(30);
 var combineURLs = __webpack_require__(31);
@@ -2764,7 +2774,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(9);
+var Cancel = __webpack_require__(10);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -3520,8 +3530,7 @@ function flashClickHandler() {
 }
 
 /***/ }),
-/* 38 */,
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3533,24 +3542,33 @@ Object.defineProperty(exports, "__esModule", {
 
 var callAPI = function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
-    var _e$target$dataset, url, payloadKey, payloadValue, callback, data;
+    var element, _element$dataset, url, callback, data;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _e$target$dataset = e.target.dataset, url = _e$target$dataset.url, payloadKey = _e$target$dataset.payloadKey, payloadValue = _e$target$dataset.payloadValue, callback = _e$target$dataset.callback;
-            _context.next = 3;
+            element = e.target.dataset.url ? e.target : e.target.closest('.api');
+            _element$dataset = element.dataset, url = _element$dataset.url, callback = _element$dataset.callback;
+            _context.next = 4;
             return (0, _axios2.default)(url).then(function (response) {
               return response.data;
             });
 
-          case 3:
+          case 4:
             data = _context.sent;
 
+            if (!(!callback || !_customAPICallbacks.customCallbackLibrary[callback])) {
+              _context.next = 7;
+              break;
+            }
+
+            return _context.abrupt('return');
+
+          case 7:
             _customAPICallbacks.customCallbackLibrary[callback]({ data: data, element: e.target });
 
-          case 5:
+          case 8:
           case 'end':
             return _context.stop();
         }
@@ -3565,11 +3583,11 @@ var callAPI = function () {
 
 exports.api = api;
 
-var _axios = __webpack_require__(15);
+var _axios = __webpack_require__(4);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _customAPICallbacks = __webpack_require__(40);
+var _customAPICallbacks = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -3585,7 +3603,7 @@ function api() {
 }
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3610,6 +3628,26 @@ var customCallbackLibrary = exports.customCallbackLibrary = {
       openLock.classList.add('hidden');
       closedLock.classList.remove('hidden');
     }
+  },
+  updateTrustIcon: function updateTrustIcon(options) {
+    var data = options.data,
+        element = options.element;
+
+    var apiElement = element.closest('.trust-parent');
+    var trustIcon = apiElement.querySelector('.trust-icon');
+    var untrustIcon = apiElement.querySelector('.untrust-icon');
+    var trustText = apiElement.querySelector('.trust-text');
+    var isTrusted = data.trusted || false;
+
+    if (isTrusted) {
+      trustIcon.classList.add('hidden');
+      untrustIcon.classList.remove('hidden');
+    } else {
+      trustIcon.classList.remove('hidden');
+      untrustIcon.classList.add('hidden');
+    }
+
+    trustText.innerHTML = data.message;
   }
 };
 

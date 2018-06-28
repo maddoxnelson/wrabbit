@@ -1,5 +1,4 @@
 function autosize(el){
-  console.log(el.scrollHeight)
   el.style.height = `${el.scrollHeight}px`
 }
 
@@ -35,4 +34,9 @@ export function deleteWarning() {
 export function changePrivacy() {
   const lockBtns = [...document.querySelectorAll('.lock-item')]
   lockBtns.forEach(btn => btn.addEventListener('click', () => btn.querySelector('.dropdown').classList.toggle('hidden')))
+}
+
+export function changeTrust() {
+  const trustBtns = [...document.querySelectorAll('.trust-item')]
+  trustBtns.forEach(btn => btn.addEventListener('click', () => btn.closest('.trust-parent').querySelector('.dropdown').classList.toggle('hidden')))
 }

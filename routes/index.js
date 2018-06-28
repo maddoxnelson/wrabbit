@@ -86,7 +86,7 @@ router.get('/api/users',
   catchErrors(userController.apiGetUsers)
 )
 
-router.get('/user/trust/:id',
+router.get('/user/trust/:id/',
   authController.requiredLogin,
   catchErrors(userController.trustOrUntrustUser)
 )

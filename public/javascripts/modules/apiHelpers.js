@@ -2,8 +2,10 @@ import axios from 'axios'
 import { customCallbackLibrary } from './customAPICallbacks'
 
 async function callAPI(e) {
-  const { url, payloadKey, payloadValue, callback } = e.target.dataset
+  const element = e.target.dataset.url ? e.target : e.target.closest('.api')
+  const { url, callback } = element.dataset
   const data = await axios(url).then(response => response.data)
+  if (!callback || !customCallbackLibrary[callback]) return
   customCallbackLibrary[callback]({ data, element: e.target })
 }
 
