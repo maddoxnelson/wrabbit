@@ -277,6 +277,9 @@ body {
 .txt-center {
   text-align: center; }
 
+.txt-left {
+  text-align: left; }
+
 .txt-white {
   color: #fff; }
 
@@ -373,12 +376,10 @@ nav {
     display: inline-block;
     background: #eff5fc;
     border-radius: 5px;
-    font-size: 20px;
-    line-height: 25px; }
+    font-size: 20px; }
 
 .dropdown {
   top: 100%;
-  right: 0;
   z-index: 1;
   font-size: .7em;
   -ms-flex-wrap: wrap;
@@ -387,6 +388,7 @@ nav {
   border-radius: 5px;
   font-family: "Playfair Display"; }
   .dropdown li {
-    min-width: 150px; }
+    min-width: 150px;
+    cursor: pointer; }
     .dropdown li:hover {
       background: #6d9dc5; }

@@ -621,11 +621,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.expandTextArea = expandTextArea;
 exports.deleteWarning = deleteWarning;
 exports.changePrivacy = changePrivacy;
+exports.changeTrust = changeTrust;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function autosize(el) {
-  console.log(el.scrollHeight);
   el.style.height = el.scrollHeight + 'px';
 }
 
@@ -666,6 +666,15 @@ function changePrivacy() {
   lockBtns.forEach(function (btn) {
     return btn.addEventListener('click', function () {
       return btn.querySelector('.dropdown').classList.toggle('hidden');
+    });
+  });
+}
+
+function changeTrust() {
+  var trustBtns = [].concat(_toConsumableArray(document.querySelectorAll('.trust-item')));
+  trustBtns.forEach(function (btn) {
+    return btn.addEventListener('click', function () {
+      return btn.closest('.trust-parent').querySelector('.dropdown').classList.toggle('hidden');
     });
   });
 }
@@ -1171,6 +1180,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _editorHelpers.changePrivacy)();
 (0, _sprintHelpers.loadInExistingBit)();
 (0, _apiHelpers.api)();
+(0, _editorHelpers.changeTrust)();
 
 /***/ }),
 /* 12 */
@@ -3623,7 +3633,21 @@ var customCallbackLibrary = exports.customCallbackLibrary = {
     var data = options.data,
         element = options.element;
 
-    console.log(data);
+    var apiElement = element.closest('.trust-parent');
+    var trustIcon = apiElement.querySelector('.trust-icon');
+    var untrustIcon = apiElement.querySelector('.untrust-icon');
+    var trustText = apiElement.querySelector('.trust-text');
+    var isTrusted = data.trusted || false;
+
+    if (isTrusted) {
+      trustIcon.classList.add('hidden');
+      untrustIcon.classList.remove('hidden');
+    } else {
+      trustIcon.classList.remove('hidden');
+      untrustIcon.classList.add('hidden');
+    }
+
+    trustText.innerHTML = data.message;
   }
 };
 

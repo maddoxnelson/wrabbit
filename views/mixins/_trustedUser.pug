@@ -4,14 +4,14 @@ mixin trustedUser(bit = {}, user = {})
     //- pre= h.dump(user)
     - const trustedUserStrings = user.trustedUsers.map(obj => obj.toString())
     - const isTrustedUser = trustedUserStrings.includes(bit.author._id.toString())
-    - const trustedText = isTrustedUser ? 'Untrust this user.' : 'Trust this user.'
-    div.relative
-      a.icon.flex-container-row.justify-center.align-items-center
-        != h.icon(`${isTrustedUser ? 'trusted' : 'untrusted'}`)
-      div.absolute.dropdown.txt-center
+    - const trustedText = isTrustedUser ? `Untrust ${bit.author.name}.` : `Trust ${bit.author.name}.`
+    div.trust-parent.relative.card-full.flex-container-row.justify-center
+      span.trust-icon.trust-item.icon.flex-container-row.justify-center.align-items-center(class=`${isTrustedUser ? '' : 'hidden'}`)
+        != h.icon(`trusted`)
+      span.untrust-icon.trust-item.icon.flex-container-row.justify-center.align-items-center(class=`${isTrustedUser ? 'hidden' : ''}`)
+        != h.icon(`untrusted`)
+      div.absolute.dropdown.txt-center.hidden
         ul
-          li.api.icon.flex-container-row.align-items-center.justify-center.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs(data-url=`/user/trust/${bit.author._id}` data-callback="updateTrustIcon")
-            span.trust-item.flex-container-row
-              != h.icon(`${isTrustedUser ? 'untrusted' : 'trusted'}`)
-            span.trust-text.pad.pad-left.pad-sm #{trustedText}
+          li.api.flex-container-row.align-items-center.justify-center.pad.pad-top.pad-bottom.pad-left.pad-right.pad-xs(data-url=`/user/trust/${bit.author._id}` data-callback="updateTrustIcon")
+            span.trust-text.pad.pad-left.pad-sm.txt-left #{trustedText}
   

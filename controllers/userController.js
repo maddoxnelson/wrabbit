@@ -51,6 +51,8 @@ exports.trustOrUntrustUser = async (req, res) => {
   const trustedUsers = req.user.trustedUsers.map(obj => obj.toString())
   const userIsTrusted = trustedUsers.includes(req.params.id)
 
+  const userIAmTrusting = await User.findOne({ _id: req.params.id })
+
   const operator = userIsTrusted ? '$pull' : '$addToSet';
   const user = await User
       .findByIdAndUpdate(req.user._id,
@@ -58,10 +60,12 @@ exports.trustOrUntrustUser = async (req, res) => {
         { new: true }
       )
 
+  const trustedUserName = userIAmTrusting.name
+
   const flashText = userIsTrusted ? 'untrusted' : 'trusted';
 
   res.json({
-    message: userIsTrusted ? `Trust ${user.name}` : `Untrust ${user.name}`,
+    message: userIsTrusted ? `Trust ${trustedUserName}.` : `Untrust ${trustedUserName}.`,
     trusted: userIsTrusted
   });
 }

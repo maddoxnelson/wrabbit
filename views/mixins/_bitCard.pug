@@ -11,6 +11,7 @@ mixin bitCard(bit = {}, user = {})
         a( href=`../bit/${bit.slug}`) #{bit.name}
     h3.flex-container-row.justify-center.align-items-center
       a(href=`/author/${bit.author.slug}`) #{bit.author.name}
+    div.flex-container-row.justify-center.align-items-center
       +trustedUser(bit, user)
     //- pre= h.dump(bit)
     a(class="unstyled" href=`../bit/${bit.slug}`)

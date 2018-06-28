@@ -15,6 +15,21 @@ export const customCallbackLibrary = {
   },
   updateTrustIcon: (options) => {
     const { data, element } = options
-    console.log(data)
+    const apiElement = element.closest('.trust-parent')
+    const trustIcon = apiElement.querySelector('.trust-icon')
+    const untrustIcon = apiElement.querySelector('.untrust-icon')
+    const trustText = apiElement.querySelector('.trust-text')
+    const isTrusted = data.trusted || false
+
+    if (isTrusted) {
+      trustIcon.classList.add('hidden')
+      untrustIcon.classList.remove('hidden')
+    } else {
+      trustIcon.classList.remove('hidden')
+      untrustIcon.classList.add('hidden')
+    }
+
+    trustText.innerHTML = data.message
+
   }
 }
