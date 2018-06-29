@@ -10,6 +10,11 @@ block content
   .inner
     h1.txt-center.txt-light-green= title
     h2.txt-center.txt-light-green Choose a length, start writing. We'll save as soon as you hit your sprint goal.
+  .inner.flex-container-row.justify-space-around
+    div.flex-container-row.justify-center.card.flex-fill.spaced.spaced-right.spaced-left.spaced-lg
+      .card-wrapper.card-full.flex-container-row.justify-space-around.align-items-center
+        +existingBit(user)
+        +prompt()
   .inner
     .card-wrapper.flex-container-row.flex-wrap.justify-space-between
       div#length.bit.card.card-wrapper.flex-container-row.justify-center.flex-wrap.spaced.spaced-right.spaced-lg.no-mobile-side-margin
@@ -30,7 +35,3 @@ block content
         div.flex-container-column.justify-center
           //- TODO from will need to be modified to work perfectly with a sprint
           +bitForm({}, { content: 'hidden', submit: 'hidden' })
-        div.flex-container-row.justify-center
-          .card-wrapper.card.card-full.flex-container-row.justify-space-around.flex-wrap.align-items-center
-            +existingBit(user)
-            +prompt()
