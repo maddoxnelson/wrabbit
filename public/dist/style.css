@@ -22,6 +22,8 @@ a {
   color: #0c1519; }
   a:visited {
     color: #0c1519; }
+    a:visited.txt-grey {
+      color: #999; }
   a:hover {
     color: #4b49c6; }
 
@@ -289,8 +291,15 @@ body {
 .txt-dark-green {
   color: #0c1519; }
 
+.txt-grey {
+  color: #d9d9d9; }
+
 .big-font {
   font-size: 22px;
+  font-family: "Playfair Display"; }
+
+.medium-font {
+  font-size: 0.8em;
   font-family: "Playfair Display"; }
 
 .small-font {

@@ -9,10 +9,11 @@ mixin bitCard(bit = {}, user = {})
     div.flex-container-row.align-items-center.justify-center
       h2.flex-container-row.txt-center
         a( href=`../bit/${bit.slug}`) #{bit.name}
-    h3.flex-container-row.justify-center.align-items-center
-      a(href=`/author/${bit.author.slug}`) #{bit.author.name}
     div.flex-container-row.justify-center.align-items-center
-      +trustedUser(bit, user)
+      h3.flex-container-row.justify-center.align-items-center.medium-font.spaced.spaced-right.spaced-sm
+        a(href=`/author/${bit.author.slug}`) #{bit.author.name}
+      div.flex-container-row.justify-center.align-items-center
+        +trustedUser(bit, user)
     //- pre= h.dump(bit)
     a(class="unstyled" href=`../bit/${bit.slug}`)
       each line, i in h.processNewLines(bit.content)
