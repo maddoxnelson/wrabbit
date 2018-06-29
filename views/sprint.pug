@@ -3,7 +3,12 @@ extends layout
 include mixins/_sprintModeCard
 
 block content
-  h1.flex-container-row.justify-center.txt-light-green= title
-  .card-wrapper.flex-container-row.justify-space-around.flex-wrap
-    +sprintModeCard("time")
-    +sprintModeCard("length")
+  .inner
+    h1.flex-container-row.justify-center.txt-light-green= title
+    h2.txt-light-green.flex-container-column.justify-center.align-items-center.txt-center
+      div Write to time or to length.
+      div Try to do a little more every day.
+      div.small-font (Tip: Click "time" and freewrite for 1-3 minutes. Every little Bit counts!)
+    .card-wrapper.flex-container-row.justify-space-around.flex-wrap
+      +sprintModeCard("time")
+      +sprintModeCard("length")

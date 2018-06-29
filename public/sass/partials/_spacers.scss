@@ -1,6 +1,15 @@
 $spaced-lg: 20px;
 $spaced-md: 15px;
 $spaced-sm: 10px;
+$spaced-xs: 5px;
+
+.no-mobile-side-margin {
+
+  @media (max-width: 700px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
 
 .spaced {
 
@@ -67,6 +76,44 @@ $spaced-sm: 10px;
 
 .pad {
 
+  &.pad-top {
+
+    &.pad-lg {
+      padding-top: $spaced-lg;
+    }
+
+    &.pad-md {
+      padding-top: $spaced-md;
+    }
+
+    &.pad-sm {
+      padding-top: $spaced-sm;
+    }
+
+    &.pad-xs {
+      padding-top: $spaced-xs;
+    }
+  }
+
+  &.pad-bottom {
+
+    &.pad-lg {
+      padding-bottom: $spaced-lg;
+    }
+
+    &.pad-md {
+      padding-bottom: $spaced-md;
+    }
+
+    &.pad-sm {
+      padding-bottom: $spaced-sm;
+    }
+
+    &.pad-xs {
+      padding-bottom: $spaced-xs;
+    }
+  }
+
   &.pad-left {
 
     &.pad-lg {
@@ -79,6 +126,10 @@ $spaced-sm: 10px;
 
     &.pad-sm {
       padding-left: $spaced-sm;
+    }
+
+    &.pad-xs {
+      padding-left: $spaced-xs;
     }
   }
 
@@ -94,6 +145,10 @@ $spaced-sm: 10px;
 
     &.pad-sm {
       padding-right: $spaced-sm;
+    }
+
+    &.pad-xs {
+      padding-right: $spaced-xs;
     }
   }
 }

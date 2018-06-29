@@ -19,6 +19,16 @@ exports.logout = (req, res) => {
 };
 
 exports.isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    req.loggedIn = true
+    next();
+    return;
+  }
+  req.loggedIn = false
+  next()
+}
+
+exports.requiredLogin = (req, res, next) => {
   // first check if user authenticated
   if(req.isAuthenticated()) {
     next(); // carry on, they good

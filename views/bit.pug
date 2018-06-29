@@ -2,6 +2,7 @@ extends layout
 
 include mixins/_bitCard
 include mixins/_lock
+include mixins/_trustedUser
 
 block content
   .inner
@@ -11,12 +12,9 @@ block content
           if user && bit.author.equals(user._id)
             a(class="icon flex-container-row justify-center align-items-center" href=`/bits/${bit._id}/edit`)
               != h.icon('pencil')
-            +lock(bit.privacy, { hideToggle: true })
+            +privacy(bit)
           if user && (user.id !== bit.author.id)
-            //- pre= h.dump(user)
-            - const trustedUserStrings = user.trustedUsers.map(obj => obj.toString())
-            - const trustedUserText = trustedUserStrings.includes(bit.author._id.toString()) ? 'Untrust this user' : 'Trust this user'
-            a(href=`/user/trust/${bit.author._id}`) #{trustedUserText}
+            +trustedUser(bit, user)
         h1.flex-container-row.justify-center.txt-center= bit.name
         a(href=`/author/${bit.author.slug}`)
           h2.flex-container-row.justify-center= bit.author.name

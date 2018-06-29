@@ -8,6 +8,12 @@ const confirmOwner = (bit, user) => {
   }
 };
 
+exports.getPublicBits = async (req, res, next) => {
+  const bits = await Bit.find({ privacy: 'world' })
+  req.bits = bits
+  next()
+}
+
 exports.showUserFeedBits = async (req, res, next) => {
   if (!req.user) return next()
 
@@ -35,17 +41,28 @@ exports.showUserFeedBits = async (req, res, next) => {
 
   const bits = [...allMyBits, ...otherPeoplesPublicBits, ...trustedUserBits]
 
-  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
+  req.bits = bits
+  next()
 }
 
-exports.getBits = async (req, res) => {
+exports.getUser = async (req, res, next) => {
+  if (!req.user) return next()
+  const user = await User.findOne({ _id: req.user.id })
+  req.user = user
+  next()
+}
 
-  const bits = await Bit.find(
-    { privacy: 'world' }
-  )
+exports.bringToHomePage = async (req, res) => {
+  const bits = req.bits
+  const user = req.user
 
-  res.render('bits', { title: 'Welcome to Wrabbit.', bits });
-};
+  if (user) {
+    res.render('bits', { title: 'Welcome to Wrabbit.', bits, user });
+  } else {
+    res.render('bits', { title: 'Welcome to Wrabbit.', bits });
+  }
+
+}
 
 exports.addBit = (req, res) => {
   res.render('write', { title: 'Write a Bit.' });
@@ -117,7 +134,12 @@ exports.getBitBySlug = async (req, res, next) => {
   res.render('bit', { title: `${bit.name}`, bit })
 }
 
-exports.createBit = async (req, res) => {
+exports.directToBitPage = async (req, res) => {
+  const bit = await Bit.findOne({ slug: req.params.slug })
+  res.redirect(`/bit/${bit.slug}`);
+}
+
+exports.createBit = async (req, res, next) => {
   // TODO carry through bit bits to give users a second chance to finish
   req.body.author = req.user._id;
   const bit = await (new Bit(req.body)).save();

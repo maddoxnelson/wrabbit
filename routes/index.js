@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bitController = require('../controllers/bitController');
+const privacyController = require('../controllers/privacyController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
 const userDashController = require('../controllers/userDashController');
@@ -10,9 +11,12 @@ const { catchErrors } = require('../handlers/errorHandlers');
 module.exports = router;
 
 router.get('/',
+  catchErrors(bitController.getUser),
+  catchErrors(bitController.getPublicBits),
   catchErrors(bitController.showUserFeedBits),
-  catchErrors(bitController.getBits)
+  catchErrors(bitController.bringToHomePage)
 );
+
 router.get('/write', bitController.addBit);
 
 router.get('/bits/:id/edit',catchErrors(bitController.editBit));
@@ -20,6 +24,21 @@ router.get('/bits/:id/edit',catchErrors(bitController.editBit));
 router.get(`/bit/:slug`,
   catchErrors(bitController.checkBitPrivacySettings),
   catchErrors(bitController.getBitBySlug));
+
+router.get(`/bits/privacy`,
+  authController.requiredLogin,
+  catchErrors(privacyController.getMyOnlyMeBits),
+  catchErrors(privacyController.getMyTrustedUserBits),
+  catchErrors(privacyController.getMyPublicBits),
+  catchErrors(privacyController.directToPrivacyPage)
+)
+
+router.get(`/bit/privacy/update/:slug/:privacy`,
+    authController.requiredLogin,
+    catchErrors(privacyController.userIsAuthorOfThisBit),
+    catchErrors(privacyController.updateBitPrivacy),
+    catchErrors(bitController.directToBitPage)
+)
 
 router.get('/bit/delete/:id', catchErrors(bitController.deleteBit));
 
@@ -38,7 +57,7 @@ router.get('/genre/:genre',
 
 // Word sprints
 router.get('/sprint',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   wordSprintController.chooseSprintMode
 )
 
@@ -53,22 +72,22 @@ router.get('/author/:slug',
 
 // JSON API for bits from author
 router.get('/api/bits/:slug',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(bitController.getJSONBitsByAuthor)
 )
 
 router.get('/api/bit/:id',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(bitController.apiGetSingleBit)
 )
 
 router.get('/api/users',
-  authController.isLoggedIn,
+  authController.requiredLogin,
   catchErrors(userController.apiGetUsers)
 )
 
-router.get('/user/trust/:id',
-  authController.isLoggedIn,
+router.get('/user/trust/:id/',
+  authController.requiredLogin,
   catchErrors(userController.trustOrUntrustUser)
 )
 

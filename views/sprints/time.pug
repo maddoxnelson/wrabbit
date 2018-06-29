@@ -14,6 +14,10 @@ block content
   .inner.flex-container-row.justify-space-around
     .bit.card.card-wrapper.flex-container-row.justify-center.flex-wrap.align-self-center
       +clock()
+    div.flex-container-row.justify-center.card.flex-fill.spaced.spaced-right.spaced-left.spaced-lg
+      .card-wrapper.card-full.flex-container-row.justify-space-around.align-items-center
+        +existingBit(user)
+        +prompt()
   .inner
     .card-wrapper.flex-container-row.flex-wrap
       div#timed.bit.card.shaded.card-wrapper.flex-container-row.justify-center.flex-wrap.spaced.spaced-right.spaced-lg
@@ -31,7 +35,4 @@ block content
         div.flex-container-column.justify-center
           //- TODO from will need to be modified to work perfectly with a sprint
           +bitForm({}, { content: 'hidden', submit: 'hidden' })
-        div.flex-container-row.justify-center
-          .card-wrapper.card.card-full.flex-container-row.justify-space-around.flex-wrap.align-items-center
-            +existingBit(user)
-            +prompt()
+        
