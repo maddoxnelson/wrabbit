@@ -2883,6 +2883,13 @@ function checkWordCount(el) {
   return el.value.split(' ').length - 1;
 }
 
+// Update the word count every 25 words
+function updateWordCount(count) {
+  console.log(count);
+  if (count % 25 !== 0) return;
+  document.querySelector('#words').innerHTML = count;
+}
+
 function hideBox(el) {
   el.classList.add('hidden');
 }
@@ -2892,8 +2899,11 @@ function runSprint() {
   var contentInput = document.querySelector('#bit-content');
   var wordLimit = parseInt(this.dataset.value);
   var numberWords = contentInput.addEventListener('keyup', function (e) {
+    var wordCount = checkWordCount(e.target);
 
-    if (checkWordCount(e.target) > wordLimit) {
+    updateWordCount(wordCount);
+
+    if (wordCount > wordLimit) {
       (0, _sprintHelpers.submitForm)();
     }
   });
