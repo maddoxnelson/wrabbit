@@ -72,7 +72,7 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var bind = __webpack_require__(5);
+var bind = __webpack_require__(4);
 var isBuffer = __webpack_require__(17);
 
 /*global toString:true*/
@@ -385,11 +385,11 @@ exports.loadInExistingBit = loadInExistingBit;
 exports.submitForm = submitForm;
 exports.showEditableForms = showEditableForms;
 
-var _editorHelpers = __webpack_require__(3);
-
-var _axios = __webpack_require__(4);
+var _axios = __webpack_require__(3);
 
 var _axios2 = _interopRequireDefault(_axios);
+
+var _editorHelpers = __webpack_require__(10);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -535,10 +535,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(6);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(6);
   }
   return adapter;
 }
@@ -606,7 +606,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = defaults;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
 /* 3 */
@@ -615,81 +615,10 @@ module.exports = defaults;
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.expandTextArea = expandTextArea;
-exports.deleteWarning = deleteWarning;
-exports.changePrivacy = changePrivacy;
-exports.changeTrust = changeTrust;
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function autosize(el) {
-  el.style.height = el.scrollHeight + 'px';
-}
-
-function expandTextArea() {
-  var textareas = [].concat(_toConsumableArray(document.querySelectorAll('textarea')));
-
-  // This is annoying, but seems to be required in order for this to be added to the animation queue properly
-  setTimeout(function () {
-    textareas.forEach(function (area) {
-      return autosize(area);
-    });
-  }, 0);
-
-  textareas.forEach(function (area) {
-    return area.addEventListener('keydown', function (e) {
-      autosize(e.target);
-    });
-  });
-}
-
-function deleteWarning() {
-  var deleteBtns = [].concat(_toConsumableArray(document.querySelectorAll('.delete')));
-
-  function deleteAndRedirect(link) {
-    location.href = link;
-  }
-
-  deleteBtns.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      var confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.');
-      if (confirm) deleteAndRedirect(btn.dataset.link);
-    });
-  });
-}
-
-function changePrivacy() {
-  var lockBtns = [].concat(_toConsumableArray(document.querySelectorAll('.lock-item')));
-  lockBtns.forEach(function (btn) {
-    return btn.addEventListener('click', function () {
-      return btn.querySelector('.dropdown').classList.toggle('hidden');
-    });
-  });
-}
-
-function changeTrust() {
-  var trustBtns = [].concat(_toConsumableArray(document.querySelectorAll('.trust-item')));
-  trustBtns.forEach(function (btn) {
-    return btn.addEventListener('click', function () {
-      return btn.closest('.trust-parent').querySelector('.dropdown').classList.toggle('hidden');
-    });
-  });
-}
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 module.exports = __webpack_require__(16);
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -706,7 +635,7 @@ module.exports = function bind(fn, thisArg) {
 };
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -899,7 +828,7 @@ process.umask = function () {
 };
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -910,7 +839,7 @@ var settle = __webpack_require__(20);
 var buildURL = __webpack_require__(22);
 var parseHeaders = __webpack_require__(23);
 var isURLSameOrigin = __webpack_require__(24);
-var createError = __webpack_require__(8);
+var createError = __webpack_require__(7);
 var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || __webpack_require__(25);
 
 module.exports = function xhrAdapter(config) {
@@ -1077,10 +1006,10 @@ module.exports = function xhrAdapter(config) {
     request.send(requestData);
   });
 };
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1104,7 +1033,7 @@ module.exports = function createError(message, config, code, request, response) 
 };
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1115,7 +1044,7 @@ module.exports = function isCancel(value) {
 };
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1141,6 +1070,77 @@ Cancel.prototype.__CANCEL__ = true;
 module.exports = Cancel;
 
 /***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.expandTextArea = expandTextArea;
+exports.deleteWarning = deleteWarning;
+exports.changePrivacy = changePrivacy;
+exports.changeTrust = changeTrust;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function autosize(el) {
+  el.style.height = el.scrollHeight + 'px';
+}
+
+function expandTextArea() {
+  var textareas = [].concat(_toConsumableArray(document.querySelectorAll('textarea')));
+
+  // This is annoying, but seems to be required in order for this to be added to the animation queue properly
+  setTimeout(function () {
+    textareas.forEach(function (area) {
+      return autosize(area);
+    });
+  }, 0);
+
+  textareas.forEach(function (area) {
+    return area.addEventListener('keydown', function (e) {
+      autosize(e.target);
+    });
+  });
+}
+
+function deleteWarning() {
+  var deleteBtns = [].concat(_toConsumableArray(document.querySelectorAll('.delete')));
+
+  function deleteAndRedirect(link) {
+    location.href = link;
+  }
+
+  deleteBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.');
+      if (confirm) deleteAndRedirect(btn.dataset.link);
+    });
+  });
+}
+
+function changePrivacy() {
+  var lockBtns = [].concat(_toConsumableArray(document.querySelectorAll('.lock-item')));
+  lockBtns.forEach(function (btn) {
+    return btn.addEventListener('click', function () {
+      return btn.querySelector('.dropdown').classList.toggle('hidden');
+    });
+  });
+}
+
+function changeTrust() {
+  var trustBtns = [].concat(_toConsumableArray(document.querySelectorAll('.trust-item')));
+  trustBtns.forEach(function (btn) {
+    return btn.addEventListener('click', function () {
+      return btn.closest('.trust-parent').querySelector('.dropdown').classList.toggle('hidden');
+    });
+  });
+}
+
+/***/ }),
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1159,7 +1159,7 @@ var _lengthSprint = __webpack_require__(34);
 
 var _lengthSprint2 = _interopRequireDefault(_lengthSprint);
 
-var _editorHelpers = __webpack_require__(3);
+var _editorHelpers = __webpack_require__(10);
 
 var _prompt = __webpack_require__(35);
 
@@ -2004,7 +2004,6 @@ function updateClock(time) {
 function countdown() {
   var duration = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 5;
 
-
   var ms = duration * 1000;
   var ticker = duration - 1;
 
@@ -2014,7 +2013,6 @@ function countdown() {
   }, 1000);
 
   return new Promise(function (resolve) {
-
     setTimeout(function () {
       clearInterval(clock);
       resolve('resolved');
@@ -2043,7 +2041,7 @@ exports.default = timedSprint;
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(5);
+var bind = __webpack_require__(4);
 var Axios = __webpack_require__(18);
 var defaults = __webpack_require__(2);
 
@@ -2078,9 +2076,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(10);
+axios.Cancel = __webpack_require__(9);
 axios.CancelToken = __webpack_require__(32);
-axios.isCancel = __webpack_require__(9);
+axios.isCancel = __webpack_require__(8);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -2232,7 +2230,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(8);
+var createError = __webpack_require__(7);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -2636,7 +2634,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(29);
-var isCancel = __webpack_require__(9);
+var isCancel = __webpack_require__(8);
 var defaults = __webpack_require__(2);
 var isAbsoluteURL = __webpack_require__(30);
 var combineURLs = __webpack_require__(31);
@@ -2774,7 +2772,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(10);
+var Cancel = __webpack_require__(9);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -2981,7 +2979,6 @@ function addPromptToform(prompt) {
 }
 
 function fetchPrompts() {
-
   var promptRegex = /(\[WP\])/;
 
   return fetch('https://www.reddit.com/r/writingprompts.json').then(function (response) {
@@ -3007,7 +3004,7 @@ function prompt() {
   if (promptBtn) {
     promptBtn.addEventListener('click', setPrompt);
   }
-};
+}
 
 /***/ }),
 /* 36 */
@@ -3593,7 +3590,7 @@ var callAPI = function () {
 
 exports.api = api;
 
-var _axios = __webpack_require__(4);
+var _axios = __webpack_require__(3);
 
 var _axios2 = _interopRequireDefault(_axios);
 

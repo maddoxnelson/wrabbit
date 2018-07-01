@@ -1,17 +1,16 @@
 import sample from 'lodash.sample';
 
 function addPromptToform(prompt) {
-  document.querySelector('#prompt-submit').value = prompt
+  document.querySelector('#prompt-submit').value = prompt;
 }
 
 async function setPrompt() {
-  let prompt = sample(await fetchPrompts(), 1);
+  const prompt = sample(await fetchPrompts(), 1);
   document.querySelector('#prompt-text').innerText = prompt;
-  addPromptToform(prompt)
+  addPromptToform(prompt);
 }
 
 function fetchPrompts() {
-
   const promptRegex = /(\[WP\])/;
 
   return fetch('https://www.reddit.com/r/writingprompts.json')
@@ -28,5 +27,4 @@ export function prompt() {
   if (promptBtn) {
     promptBtn.addEventListener('click', setPrompt);
   }
-
-};
+}

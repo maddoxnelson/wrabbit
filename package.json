@@ -9,9 +9,10 @@
     "start": "node ./start.js",
     "watch": "nodemon ./start.js",
     "assets": "webpack -w --display-max-modules 0",
-    "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
+    "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" \"yarn lint\" --prefix name",
     "blowitallaway": "node ./data/load-sample-data.js --delete",
-    "sample": "node ./data/load-sample-data.js"
+    "sample": "node ./data/load-sample-data.js",
+    "lint": "eslint ./public/javascripts"
   },
   "now": {
     "dotenv": "variables.env.now"
@@ -29,6 +30,9 @@
     "babel-runtime": "^6.1.4",
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.11",
+    "eslint": "^5.0.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "node-sass": "^4.7.2",
     "nodemon": "^1.17.2",
