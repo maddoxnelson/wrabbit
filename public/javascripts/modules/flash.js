@@ -1,7 +1,9 @@
-export function flashClickHandler() {
+function flashClickHandler() {
   const flashMessages = [...document.querySelectorAll('.flash-messages')];
 
-  flashMessages.forEach(flash => {
-    setTimeout(function(){ flash.remove() }, 3000);
-  })
+  flashMessages.forEach((flash) => {
+    setTimeout(() => { flash.remove(); }, 3000);
+  });
 }
+
+export default flashClickHandler;

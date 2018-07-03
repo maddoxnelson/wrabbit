@@ -6,9 +6,8 @@ function checkWordCount(el) {
 
 // Update the word count every 25 words
 function updateWordCount(count) {
-  console.log(count)
-  if (count % 25 !== 0) return
-  document.querySelector('#words').innerHTML = count
+  if (count % 25 !== 0) return;
+  document.querySelector('#words').innerHTML = count;
 }
 
 function hideBox(el) {
@@ -16,20 +15,20 @@ function hideBox(el) {
 }
 
 function runSprint() {
-  showEditableForms()
+  showEditableForms();
   const contentInput = document.querySelector('#bit-content');
-  const wordLimit = parseInt(this.dataset.value);
-  const numberWords = contentInput.addEventListener('keyup', (e) => {
-    const wordCount = checkWordCount(e.target)
+  const wordLimit = parseInt(this.dataset.value, 10);
+  contentInput.addEventListener('keyup', (e) => {
+    const wordCount = checkWordCount(e.target);
 
-    updateWordCount(wordCount)
-    
+    updateWordCount(wordCount);
+
     if (wordCount > wordLimit) {
       submitForm();
     }
   });
 
-  hideBox(document.getElementById('length'))
+  hideBox(document.getElementById('length'));
 }
 
 function init() {
