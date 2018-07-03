@@ -8,8 +8,6 @@ const authController = require('../controllers/authController');
 const wordSprintController = require('../controllers/wordSprintController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
-module.exports = router;
-
 router.get('/',
   catchErrors(bitController.getUser),
   catchErrors(bitController.getPublicBits),
@@ -80,6 +78,9 @@ router.get('/api/bit/:id',
   catchErrors(bitController.apiGetSingleBit)
 )
 
+router.get('/tests',
+  bitController.returnSimpleText);
+
 router.get('/api/users',
   authController.requiredLogin,
   catchErrors(userController.apiGetUsers));
@@ -96,7 +97,10 @@ router.get('/user/trust/:id/',
 // User and authentication routes
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);
-router.post('/login', authController.login);
+router.post('/login',
+  authController.login,
+  authController.directToScreen
+);
 
 // validate registration
 router.post('/register',
@@ -106,3 +110,5 @@ router.post('/register',
 );
 
 router.get('/logout', authController.logout);
+
+module.exports = router;
