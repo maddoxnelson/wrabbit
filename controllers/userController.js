@@ -47,6 +47,11 @@ exports.apiGetUsers = async (req, res) => {
   res.json(users)
 }
 
+exports.apiGetSingleUser = async (req, res) => {
+  const user = await User.findOne({ _id: req.user.id });
+  res.json(user);
+};
+
 exports.trustOrUntrustUser = async (req, res) => {
   const trustedUsers = req.user.trustedUsers.map(obj => obj.toString())
   const userIsTrusted = trustedUsers.includes(req.params.id)
