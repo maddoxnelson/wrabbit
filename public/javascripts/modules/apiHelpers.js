@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { customCallbackLibrary } from './customAPICallbacks';
+import customCallbackLibrary from './customAPICallbacks';
 
 async function callAPI(e) {
   const element = e.target.dataset.url ? e.target : e.target.closest('.api');
@@ -9,7 +9,9 @@ async function callAPI(e) {
   customCallbackLibrary[callback]({ data, element: e.target });
 }
 
-export function api() {
+function api() {
   const apiTriggers = [...document.querySelectorAll('.api')];
   apiTriggers.forEach(trigger => trigger.addEventListener('click', callAPI));
 }
+
+export default api;

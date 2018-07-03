@@ -1,4 +1,4 @@
-export const customCallbackLibrary = {
+const customCallbackLibrary = {
   updateLockIcon: (options) => {
     const { data: bit, element } = options;
     const lockIcon = element.closest('.lock-item');
@@ -32,3 +32,5 @@ export const customCallbackLibrary = {
     trustText.innerHTML = data.message;
   },
 };
+
+export default customCallbackLibrary;

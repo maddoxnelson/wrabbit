@@ -22,7 +22,7 @@ function countdown(duration = 5) {
 
   const clock = setInterval(() => {
     updateClock(ticker);
-    ticker--;
+    ticker -= 1;
   }, 1000);
 
   return new Promise((resolve) => {
@@ -36,15 +36,15 @@ function countdown(duration = 5) {
 async function runSprint() {
   showEditableForms();
   hideBox(document.getElementById('timed'));
-  const time = parseInt(this.dataset.value) * 60;
-  console.log('Sprint starting in 5 seconds...');
+  const time = parseInt(this.dataset.value, 10) * 60;
+  // console.log('Sprint starting in 5 seconds...');
   await countdown(5);
-  console.log(`${this.dataset.value} ${this.dataset.unit} sprint starting!!`);
+  // console.log(`${this.dataset.value} ${this.dataset.unit} sprint starting!!`);
   await countdown(time);
-  console.log('SPRINT COMPLETE! Take 15 seconds to finish your current sentence.');
+  // console.log('SPRINT COMPLETE! Take 15 seconds to finish your current sentence.');
   await countdown(15);
   submitForm();
-  console.log('Display stats on the next page');
+  // console.log('Display stats on the next page');
 }
 
 function init() {

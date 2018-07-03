@@ -7,7 +7,7 @@ export function loadInExistingBit() {
   const bitTitleBox = document.querySelector('#bit-title');
   const bitContentBox = document.querySelector('#bit-content');
   const lengthBtns = [...document.querySelectorAll('.length-sprint')];
-  const timedBtns = [...document.querySelectorAll('.timed-sprint')];
+  // const timedBtns = [...document.querySelectorAll('.timed-sprint')];
   const bitForm = document.querySelector('#bit');
 
   async function getBitsByAuthor(url) {
@@ -15,7 +15,7 @@ export function loadInExistingBit() {
       .then(response => response.data);
 
     const stuff = bits.map(bit => `
-        <option value="${bit._id}">${bit.name}</option>
+        <option value="${bit.id}">${bit.name}</option>
       `).join('');
 
     bitChooser.classList.remove('hidden');
@@ -28,10 +28,12 @@ export function loadInExistingBit() {
 
     bitTitleBox.value = bit.name;
     bitContentBox.value = bit.content;
-    bitForm.setAttribute('action', `/write/${bit._id}`);
+    bitForm.setAttribute('action', `/write/${bit.id}`);
 
     lengthBtns.forEach((btn) => {
-      btn.dataset.value = parseInt(btn.dataset.value) + bit.word_count;
+      const button = btn;
+      const btnValue = `${parseInt(btn.dataset.value, 10)}${bit.word_count}`;
+      button.dataset.value = btnValue;
     });
   }
 

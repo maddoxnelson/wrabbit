@@ -1,11 +1,13 @@
 function autosize(el) {
-  el.style.height = `${el.scrollHeight}px`;
+  const element = el;
+  element.style.height = `${el.scrollHeight}px`;
 }
 
 export function expandTextArea() {
   const textareas = [...document.querySelectorAll('textarea')];
 
-  // This is annoying, but seems to be required in order for this to be added to the animation queue properly
+  // This is annoying, but seems to be required in order for this
+  // to be added to the animation queue properly
   setTimeout(() => {
     textareas.forEach(area => autosize(area));
   }, 0);
@@ -20,12 +22,12 @@ export function deleteWarning() {
   const deleteBtns = [...document.querySelectorAll('.delete')];
 
   function deleteAndRedirect(link) {
-    location.href = link;
+    window.location.href = link;
   }
 
   deleteBtns.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      const confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.');
+    btn.addEventListener('click', () => {
+      const confirm = window.confirm('Are you sure you want to delete this Bit? This is permanent.'); // eslint-disable-line no-alert
       if (confirm) deleteAndRedirect(btn.dataset.link);
     });
   });

@@ -1,52 +1,49 @@
 button, .button {
-  font-size: 0.9em;
-  font-family: $primary-font;
-  color: $alice-blue;
-  padding: 15px;
-  background: $ocean-blue;
-  border: 0;
-  border-radius: 5px;
-  outline: 0;
-  cursor: pointer;
+	font-size: 0.9em;
+	font-family: $primary-font;
+	color: $alice-blue;
+	padding: 15px;
+	background: $ocean-blue;
+	border: 0;
+	border-radius: 5px;
+	outline: 0;
+	cursor: pointer;
 
-  &:hover {
-    background: $cerulean-frost;
-  }
+	asdf
+	&:hover {
+		background: $cerulean-frost;
+	}
 
 }
 
 .icon {
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
 }
 
 .icon {
+	&.avatar {
+		border-radius: 50%;
+	}
 
-  &.avatar {
-    border-radius: 50%;
-  }
+	&.color-svg {
+		&:hover {
+			path,
+			polygon {
+				fill: $maize;
+				stroke: $maize;
+			}
+		}
+	}
 
-  &.color-svg {
+	&.logo {
+		svg {
+			height: 40px;
+		}
+	}
 
-    &:hover {
-
-      path,
-      polygon {
-        fill: $maize;
-        stroke: $maize;
-      }
-    }
-  }
-
-  &.logo {
-
-    svg {
-      height: 40px;
-    }
-  }
-
-  svg {
-    height: 25px;
-  }
+	svg {
+		height: 25px;
+	}
 }

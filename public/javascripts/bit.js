@@ -6,10 +6,10 @@ import lengthSprint from './modules/lengthSprint';
 import {
   expandTextArea, deleteWarning, changePrivacy, changeTrust,
 } from './modules/editorHelpers';
-import { prompt } from './modules/prompt';
-import { flashClickHandler } from './modules/flash';
+import prompt from './modules/prompt';
+import flashClickHandler from './modules/flash';
 import { loadInExistingBit } from './modules/sprintHelpers';
-import { api } from './modules/apiHelpers';
+import api from './modules/apiHelpers';
 
 deleteWarning();
 flashClickHandler();
