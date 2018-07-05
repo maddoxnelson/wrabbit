@@ -2,10 +2,8 @@ const mongoose = require("mongoose");
 const Bit = mongoose.model("Bit");
 const User = mongoose.model("User");
 
-const confirmOwner = (bit, user) => {
-  if (!bit.author.equals(user._id)) {
-    throw Error('You must own a store in order to edit it.');
-  }
+exports.returnSimpleText = (req, res) => {
+  res.status(200).send('Hello World!');
 };
 
 exports.getPublicBits = async (req, res, next) => {
@@ -71,12 +69,15 @@ exports.addBit = (req, res) => {
 exports.editBit = async (req, res) => {
   // 1. Find the bit given the ID
   const bit = await Bit.findOne({ _id: req.params.id });
-  // 2. Confirm they are the owner of the store.
-  confirmOwner(bit, req.user);
+  const user = await User.findOne({ _id: req.user.id });
+  // 2. Confirm they are the owner of the bit.
+  if (!bit.author.id.equals(user.id)) {
+    throw Error('You must own a store in order to edit it.');
+  }
 
   // 3. render out the edit form so user can update their bit.
-  res.render('editBit', { title: `Edit "${bit.name}"`, bit })
-}
+  res.render('editBit', { title: `Edit "${bit.name}"`, bit });
+};
 
 exports.deleteBit = async (req, res) => {
   const bit = await Bit.deleteOne(

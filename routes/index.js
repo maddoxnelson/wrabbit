@@ -1,25 +1,22 @@
 const express = require('express');
+
 const router = express.Router();
 const bitController = require('../controllers/bitController');
 const privacyController = require('../controllers/privacyController');
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
-const userDashController = require('../controllers/userDashController');
 const wordSprintController = require('../controllers/wordSprintController');
 const { catchErrors } = require('../handlers/errorHandlers');
-
-module.exports = router;
 
 router.get('/',
   catchErrors(bitController.getUser),
   catchErrors(bitController.getPublicBits),
   catchErrors(bitController.showUserFeedBits),
-  catchErrors(bitController.bringToHomePage)
-);
+  catchErrors(bitController.bringToHomePage));
 
 router.get('/write', bitController.addBit);
 
-router.get('/bits/:id/edit',catchErrors(bitController.editBit));
+router.get('/bits/:id/edit', catchErrors(bitController.editBit));
 
 router.get(`/bit/:slug`,
   catchErrors(bitController.checkBitPrivacySettings),
@@ -81,10 +78,16 @@ router.get('/api/bit/:id',
   catchErrors(bitController.apiGetSingleBit)
 )
 
+router.get('/tests',
+  bitController.returnSimpleText);
+
 router.get('/api/users',
   authController.requiredLogin,
-  catchErrors(userController.apiGetUsers)
-)
+  catchErrors(userController.apiGetUsers));
+
+router.get('/api/user/:id',
+  authController.requiredLogin,
+  catchErrors(userController.apiGetSingleUser));
 
 router.get('/user/trust/:id/',
   authController.requiredLogin,
@@ -94,7 +97,10 @@ router.get('/user/trust/:id/',
 // User and authentication routes
 router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);
-router.post('/login', authController.login);
+router.post('/login',
+  authController.login,
+  authController.directToScreen
+);
 
 // validate registration
 router.post('/register',
@@ -104,3 +110,5 @@ router.post('/register',
 );
 
 router.get('/logout', authController.logout);
+
+module.exports = router;

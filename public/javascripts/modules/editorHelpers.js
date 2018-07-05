@@ -12,7 +12,6 @@ export function expandTextArea() {
     textareas.forEach(area => autosize(area));
   }, 0);
 
-
   textareas.forEach(area => area.addEventListener('keydown', (e) => {
     autosize(e.target);
   }));
