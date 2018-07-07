@@ -71,9 +71,6 @@ exports.editBit = async (req, res) => {
   const bit = await Bit.findOne({ _id: req.params.id });
   const user = await User.findOne({ _id: req.user.id });
   // 2. Confirm they are the owner of the bit.
-  if (!bit.author.id.equals(user.id)) {
-    throw Error('You must own a store in order to edit it.');
-  }
 
   // 3. render out the edit form so user can update their bit.
   res.render('editBit', { title: `Edit "${bit.name}"`, bit });
