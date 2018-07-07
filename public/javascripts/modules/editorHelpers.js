@@ -1,20 +1,8 @@
-function autosize(el) {
+import debounce from 'lodash';
+
+export function autosize(el, height = el.scrollHeight) {
   const element = el;
-  element.style.height = `${el.scrollHeight}px`;
-}
-
-export function expandTextArea() {
-  const textareas = [...document.querySelectorAll('textarea')];
-
-  // This is annoying, but seems to be required in order for this
-  // to be added to the animation queue properly
-  setTimeout(() => {
-    textareas.forEach(area => autosize(area));
-  }, 0);
-
-  textareas.forEach(area => area.addEventListener('keydown', (e) => {
-    autosize(e.target);
-  }));
+  element.style.height = `${height}px`;
 }
 
 export function deleteWarning() {
@@ -40,4 +28,32 @@ export function changePrivacy() {
 export function changeTrust() {
   const trustBtns = [...document.querySelectorAll('.trust-item')];
   trustBtns.forEach(btn => btn.addEventListener('click', () => btn.closest('.trust-parent').querySelector('.dropdown').classList.toggle('hidden')));
+}
+
+// On screen resize, run the autosize function on the element
+export function sizeTextAreaOnResize(el) {
+  window.addEventListener('resize', () => {
+    debounce(autosize(el, '1'), 500);
+    debounce(autosize(el), 500);
+  });
+}
+
+// When a user depresses a key, see if you need to resize the text area
+export function sizeTextAreaOnKeydown(el) {
+  el.addEventListener('keydown', e => debounce(autosize(e.target), 500));
+}
+
+export function expandTextArea() {
+  const textareas = [...document.querySelectorAll('textarea')];
+
+  // This is annoying, but seems to be required in order for this
+  // to be added to the animation queue properly
+  setTimeout(() => {
+    textareas.forEach(area => autosize(area));
+  }, 0);
+
+  textareas.forEach((area) => {
+    sizeTextAreaOnKeydown(area);
+    sizeTextAreaOnResize(area);
+  });
 }
