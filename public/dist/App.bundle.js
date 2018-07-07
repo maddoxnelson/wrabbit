@@ -416,11 +416,18 @@ function loadInExistingBit() {
                 return '\n        <option value="' + bit.id + '">' + bit.name + '</option>\n      ';
               }).join('');
 
+              if (bitChooser) {
+                _context.next = 6;
+                break;
+              }
 
+              return _context.abrupt('return');
+
+            case 6:
               bitChooser.classList.remove('hidden');
               bitChooser.innerHTML = stuff;
 
-            case 6:
+            case 8:
             case 'end':
               return _context.stop();
           }
@@ -477,7 +484,6 @@ function loadInExistingBit() {
   var bitTitleBox = document.querySelector('#bit-title');
   var bitContentBox = document.querySelector('#bit-content');
   var lengthBtns = [].concat(_toConsumableArray(document.querySelectorAll('.length-sprint')));
-  // const timedBtns = [...document.querySelectorAll('.timed-sprint')];
   var bitForm = document.querySelector('#bit');
 
   if (!loadBtn) return;
