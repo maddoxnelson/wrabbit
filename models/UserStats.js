@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
 const userStatsSchema = new Schema({
-  user: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: 'You must supply an author'
-  },
-  bits: []
+  words_written_today: {
+    type: Number,
+    default: 0
+  }
 });
+
+module.exports = mongoose.model('UserStats', userStatsSchema);

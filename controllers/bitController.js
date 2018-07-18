@@ -1,6 +1,13 @@
+import { 
+  updateUsersTotalWordCount, 
+  resetDailyWordCount,
+  getUsersWordCount } from '../handlers/utilities';
+import moment from 'moment';
+
 const mongoose = require("mongoose");
 const Bit = mongoose.model("Bit");
 const User = mongoose.model("User");
+const wordcount = require('wordcount');
 
 exports.returnSimpleText = (req, res) => {
   res.status(200).send('Hello World!');
@@ -77,24 +84,42 @@ exports.editBit = async (req, res) => {
 };
 
 exports.deleteBit = async (req, res) => {
+  const bitNotLongForThisWorld = await Bit.findOne({ _id: req.params.id })
+  const user = await User.findOne({ _id: req.user.id })
+
+  resetDailyWordCount(user.stats.wordsWrittenToday.lastUpdated)
+  
   const bit = await Bit.deleteOne(
     { _id: req.params.id }
   ).exec()
+
+  updateUsersTotalWordCount(user);
 
   req.flash('success', `Deleted.</a>`);
   res.redirect(`/`)
 }
 
 exports.updateBit = async (req, res) => {
+  const { name, content, prompt } = req.body
+  const word_count = wordcount(content);
+  const user = await User.findOne({ _id: req.user.id })
+  const shouldResetWordCount = resetDailyWordCount(user.stats.wordsWrittenToday.lastUpdated)
+  const usersCurrentWordCount = await getUsersWordCount(user);
+  const oldBit = await Bit.findOne({ _id: req.params.id })
 
   const bit = await Bit.findOneAndUpdate(
     { _id: req.params.id }, // query
-    req.body, // data
+    { name, 
+      content, 
+      prompt,
+      word_count }, // data
     { // options
       new: true,          // return new bit, not old bit
       runValidators: true // force our model to run required validators against this
     }
   ).exec();
+
+  updateUsersTotalWordCount(user, shouldResetWordCount, oldBit.word_count, bit.word_count);
 
   req.flash('success', `Successfully updated ${bit.name}`);
   res.redirect(`/bit/${bit.slug}`)

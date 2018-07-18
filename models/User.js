@@ -6,6 +6,7 @@ const validator = require("validator");
 const mongodbErrorHandler = require("mongoose-mongodb-errors");
 const passportLocalMongoose = require("passport-local-mongoose");
 const slug = require('slugs');
+import moment from 'moment';
 
 const userSchema = new Schema({
   email: {
@@ -26,7 +27,23 @@ const userSchema = new Schema({
   resetPasswordExpires: Date,
   trustedUsers: [
     { type: mongoose.Schema.ObjectId, ref: 'User' }
-  ]
+  ],
+  stats: {
+    totalWordsWritten : {
+      type: Number,
+      default: 0
+    },
+    wordsWrittenToday: {
+      dailyWordCount: {
+        type: Number,
+        default: 0
+      },
+      lastUpdated: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  }
 });
 
 userSchema.virtual('gravatar').get(function() {
@@ -34,13 +51,6 @@ userSchema.virtual('gravatar').get(function() {
   return `https://gravatar.com/avatar/${hash}?s=200,
   resetPasswordToken: String,
   resetPasswordExpires: Date,`
-});
-
-// find reviews where stores _id equals the review's store
-userSchema.virtual('stats', {
-  ref: 'UserStats', // what model to link?
-  localField: '_id', // which field on the user
-  foreignField: 'user' // which field on the review
 });
 
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
