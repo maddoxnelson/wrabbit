@@ -1,5 +1,5 @@
 import '../sass/style.scss';
-import 'regenerator-runtime/runtime';
+import 'babel-polyfill';
 
 import timedSprint from './modules/timedSprint';
 import lengthSprint from './modules/lengthSprint';

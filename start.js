@@ -12,8 +12,8 @@ mongoose.connection.on('error', (err) => {
 });
 
 // import models here
-require('./models/Bit');
 require('./models/User');
+require('./models/Bit');
 require('./models/UserStats');
 
 // fire it up
