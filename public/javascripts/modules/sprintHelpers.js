@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { expandTextArea } from './editorHelpers';
+import LevelSprint from './LevelSprint';
 
 export function loadInExistingBit() {
   const loadBtn = document.querySelector('#load-in-bit');
@@ -68,4 +69,8 @@ export function showEditableForms() {
   const editor = document.querySelector('#bit-content');
   editor.classList.remove('hidden');
   expandTextArea();
+}
+
+export function manageLevelSprint() {
+  const levelSprint = new LevelSprint();
 }

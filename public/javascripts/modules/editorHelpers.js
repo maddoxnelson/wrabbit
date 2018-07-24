@@ -1,4 +1,4 @@
-import debounce from 'lodash';
+import debounce from 'lodash/debounce';
 
 export function autosize(el, height = el.scrollHeight) {
   const element = el;
@@ -40,7 +40,7 @@ export function sizeTextAreaOnResize(el) {
 
 // When a user depresses a key, see if you need to resize the text area
 export function sizeTextAreaOnKeydown(el) {
-  el.addEventListener('keydown', e => debounce(autosize(e.target), 500));
+  el.addEventListener('keydown', e => autosize(e.target));
 }
 
 export function expandTextArea() {

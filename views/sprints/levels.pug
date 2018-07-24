@@ -1,0 +1,30 @@
+extends ../layout
+
+include ../mixins/_button
+include ../mixins/_clock
+include ../mixins/_bitForm
+include ../mixins/_existingBit
+include ../mixins/_prompt
+
+block content
+  .inner
+    h1.txt-center.txt-light-green= title
+    h2.txt-center.txt-light-green Earn XP for every word.
+    h2.txt-center.txt-light-green You'll get a series of prompts. You have 3 minutes to write at least 100 words for each of them.
+  .inner.flex-container-row.justify-space-around
+    .bit.card.card-wrapper.flex-container-column.justify-center.flex-wrap.align-self-center.txt-center
+        div Level
+            span#level-number 0
+        div XP
+            span#xp 0
+        div XP to next level
+            span#xp-remaining 100
+    div.flex-container-row.justify-center.card.flex-fill.spaced.spaced-right.spaced-left.spaced-lg
+      .card-wrapper.card-full.flex-container-row.justify-space-around.align-items-center
+        div.flex-container-column.justify-center
+            button#level-start Start
+            div#prompt-text.txt-center.spaced.spaced-top.spaced-lg
+  .inner
+    .card-wrapper.flex-container-row.flex-wrap
+        +bitForm({}, { submit: 'bork' })
+        

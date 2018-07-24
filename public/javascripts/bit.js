@@ -8,7 +8,7 @@ import {
 } from './modules/editorHelpers';
 import prompt from './modules/prompt';
 import flashClickHandler from './modules/flash';
-import { loadInExistingBit } from './modules/sprintHelpers';
+import { loadInExistingBit, manageLevelSprint } from './modules/sprintHelpers';
 import api from './modules/apiHelpers';
 
 deleteWarning();
@@ -21,3 +21,4 @@ changePrivacy();
 loadInExistingBit();
 api();
 changeTrust();
+manageLevelSprint();
