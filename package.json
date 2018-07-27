@@ -9,7 +9,7 @@
     "start": "node ./start.js",
     "watch": "nodemon ./start.js",
     "assets": "webpack -w --display-max-modules 0",
-    "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" \"npm run eslint\" \"npm run stylelint\" --prefix name --watch",
+    "dev": "concurrently \"npm run watch\" \"npm run assets\" --names \"💻,📦\" --prefix name",
     "blowitallaway": "node ./data/load-sample-data.js --delete",
     "sample": "node ./data/load-sample-data.js",
     "lint": "eslint --fix --quiet ./public/javascripts",

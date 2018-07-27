@@ -1,4 +1,4 @@
-import debounce from 'lodash';
+import debounce from 'lodash.debounce';
 
 export function autosize(el, height = el.scrollHeight) {
   const element = el;
