@@ -19,6 +19,21 @@ require('./handlers/passport');
 
 const app = express();
 
+const chokidar = require('chokidar');
+const watcher = chokidar.watch('./public')
+
+const production = process.env.NODE_ENV === 'production'
+if (!production) {
+  watcher.on('ready', function() {
+    watcher.on('all', function() {
+      console.log("Clearing /dist/ module cache from server")
+      Object.keys(require.cache).forEach(function(id) {
+        if (/[\/\\]app[\/\\]/.test(id)) delete require.cache[id]
+      })
+    })
+  })
+}
+
 app.set('views', path.join(__dirname, 'views')); // hooks up folder where our pug files will live
 
 app.set('view engine', 'pug'); // specifies the engine as pug, although you could use something else like mustache

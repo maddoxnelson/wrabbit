@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
 require('dotenv').config({ path: 'variables.env' });
-require("babel-core/register");
-require("babel-polyfill");
 
 mongoose.connect(process.env.DATABASE);
 mongoose.Promise = global.Promise;
@@ -14,7 +12,6 @@ mongoose.connection.on('error', (err) => {
 // import models here
 require('./models/Bit');
 require('./models/User');
-require('./models/UserStats');
 
 // fire it up
 const app = require('./app');

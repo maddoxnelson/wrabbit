@@ -7,6 +7,8 @@ block content
     div.flex-container-column.align-items-center.txt-light-green
       h1= title
       div.big-font.spaced.spaced-bottom.spaced-lg.txt-center Wrabbit is a site encouraging daily writing habits.
+      if user
+        input#bit-filter.spaced.spaced-bottom.spaced-top.spaced-lg.txt-center(type="text" data-user-slug=`${user.slug}` placeholder="Filter bits")
     .card-wrapper.masonry
       each bit in bits
         +bitCard(bit, user)

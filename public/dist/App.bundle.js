@@ -385,9 +385,9 @@ exports.loadInExistingBit = loadInExistingBit;
 exports.submitForm = submitForm;
 exports.showEditableForms = showEditableForms;
 
-var _editorHelpers = __webpack_require__(3);
+var _editorHelpers = __webpack_require__(4);
 
-var _axios = __webpack_require__(4);
+var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -516,6 +516,15 @@ function showEditableForms() {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(16);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
@@ -609,7 +618,7 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -678,15 +687,6 @@ function changeTrust() {
     });
   });
 }
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(16);
 
 /***/ }),
 /* 5 */
@@ -1159,7 +1159,7 @@ var _lengthSprint = __webpack_require__(34);
 
 var _lengthSprint2 = _interopRequireDefault(_lengthSprint);
 
-var _editorHelpers = __webpack_require__(3);
+var _editorHelpers = __webpack_require__(4);
 
 var _prompt = __webpack_require__(35);
 
@@ -1169,7 +1169,14 @@ var _sprintHelpers = __webpack_require__(1);
 
 var _apiHelpers = __webpack_require__(38);
 
+var _forms = __webpack_require__(40);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log('yo');
+
+console.log('dude.');
+console.log(_forms.bitFilter);
 
 (0, _editorHelpers.deleteWarning)();
 (0, _flash.flashClickHandler)();
@@ -1181,6 +1188,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _sprintHelpers.loadInExistingBit)();
 (0, _apiHelpers.api)();
 (0, _editorHelpers.changeTrust)();
+console.log('start plz');
+_forms.bitFilter.initialize();
 
 /***/ }),
 /* 12 */
@@ -2045,7 +2054,7 @@ exports.default = timedSprint;
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(5);
 var Axios = __webpack_require__(18);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 
 /**
  * Create an instance of Axios
@@ -2129,7 +2138,7 @@ function isSlowBuffer(obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(27);
 var dispatchRequest = __webpack_require__(28);
@@ -2637,7 +2646,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(29);
 var isCancel = __webpack_require__(9);
-var defaults = __webpack_require__(2);
+var defaults = __webpack_require__(3);
 var isAbsoluteURL = __webpack_require__(30);
 var combineURLs = __webpack_require__(31);
 
@@ -3593,7 +3602,7 @@ var callAPI = function () {
 
 exports.api = api;
 
-var _axios = __webpack_require__(4);
+var _axios = __webpack_require__(2);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -3660,6 +3669,88 @@ var customCallbackLibrary = exports.customCallbackLibrary = {
     trustText.innerHTML = data.message;
   }
 };
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.bitFilter = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _axios = __webpack_require__(2);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var BitFilter = function () {
+    function BitFilter() {
+        _classCallCheck(this, BitFilter);
+
+        this.bits = [];
+        this.userSlug = '';
+
+        this.initialize = this.initialize.bind(this);
+        this.setBits = this.setBits.bind(this);
+    }
+
+    _createClass(BitFilter, [{
+        key: 'setBits',
+        value: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.next = 2;
+                                return (0, _axios2.default)('/api/bits/' + this.userSlug);
+
+                            case 2:
+                                this.bits = _context.sent;
+
+                                console.log();
+                                console.log(this);
+
+                            case 5:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this);
+            }));
+
+            function setBits() {
+                return _ref.apply(this, arguments);
+            }
+
+            return setBits;
+        }()
+    }, {
+        key: 'initialize',
+        value: function initialize() {
+            console.log('init...sdfsd');
+            var bitForm = document.querySelector('#bit-form');
+            if (!bitForm) return;
+            this.userSlug = bitForm.dataset.userSlug;
+            this.setBits();
+        }
+    }]);
+
+    return BitFilter;
+}();
+
+var bitFilter = exports.bitFilter = new BitFilter();
 
 /***/ })
 /******/ ]);
