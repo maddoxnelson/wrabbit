@@ -21,3 +21,5 @@ changePrivacy();
 loadInExistingBit();
 api();
 changeTrust();
+
+console.log('himatthew2')

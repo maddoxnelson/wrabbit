@@ -15,6 +15,7 @@ export async function getUsersWordCount(user) {
     const bitsByUser = await Bit.find({
         author: user._id
     })
+
     const totalWordCount = bitsByUser.reduce((acc, curr) => curr.word_count + acc, 0)
     return totalWordCount;
 }

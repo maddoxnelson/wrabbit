@@ -44,6 +44,7 @@ async function simpleResetWordCount(lastUpdated) {
 }
 
 async function addToUsersTotalWordCount(id, wordCount) {
+  console.log({ id, wordCount })
   const author = await User.findOne({ _id: id});
   const dailyCount = author.stats.wordsWrittenToday.dailyWordCount
   const count = dailyCount + wordCount 
@@ -60,7 +61,7 @@ async function addToUsersTotalWordCount(id, wordCount) {
 }
 
 bitSchema.pre('save', async function(next) {
-
+  
   // Any fields that are not required, but need to have values, are set here
   this.name = this.name || this.content.split(' ').slice(0,4).join(' ')
 

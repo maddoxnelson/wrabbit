@@ -1,5 +1,3 @@
-import debounce from 'lodash';
-
 export function autosize(el, height = el.scrollHeight) {
   const element = el;
   element.style.height = `${height}px`;
@@ -33,14 +31,16 @@ export function changeTrust() {
 // On screen resize, run the autosize function on the element
 export function sizeTextAreaOnResize(el) {
   window.addEventListener('resize', () => {
-    debounce(autosize(el, '1'), 500);
-    debounce(autosize(el), 500);
+    autosize(el, '1');
+    autosize(el);
   });
 }
 
 // When a user depresses a key, see if you need to resize the text area
 export function sizeTextAreaOnKeydown(el) {
-  el.addEventListener('keydown', e => debounce(autosize(e.target), 500));
+  console.log('test');
+  console.log('yo frin me! dogsdfs');
+  el.addEventListener('keydown', e => autosize(e.target));
 }
 
 export function expandTextArea() {

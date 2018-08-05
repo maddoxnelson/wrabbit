@@ -20,7 +20,7 @@ block content
           h2.flex-container-row.justify-center= bit.author.name
         each line, i in h.processNewLines(bit.content)
           p= line
-        //- pre= h.dump(bit)
+        pre= h.dump(bit)
     .card.card-full
       div.flex-container-column
         h3 Stats:
