@@ -44,13 +44,22 @@ async function simpleResetWordCount(lastUpdated) {
 }
 
 async function addToUsersTotalWordCount(id, wordCount) {
-  console.log({ id, wordCount })
+
   const author = await User.findOne({ _id: id});
   const dailyCount = author.stats.wordsWrittenToday.dailyWordCount
   const count = dailyCount + wordCount 
+
+  const recordKey = moment().format('MM-DD-YYYY');
+
+  const streak = author.streak || { };
+  streak[recordKey] = {
+      dailyWordCount: count
+  }
+
   const user = await User.findOneAndUpdate(
     { _id: id },
     { stats: {
+      streak,
       totalWordsWritten : author.stats.totalWordsWritten + wordCount,
       wordsWrittenToday: {
         dailyWordCount: count,

@@ -1,10 +1,15 @@
 extends layout
 
 include mixins/_bitCard
+include mixins/stats/_streak
 
 block content
-  .inner
-    h1.txt-light-green.flex-container-row.justify-center #{user.name}'s written work
+  .inner.txt-light-green
+    h1.flex-container-row.justify-center #{user.name}
+    h2 Stats
+    .card-wrapper
+      +streak(user.stats.streak)
+    h2 Bits by #{user.name}
     .card-wrapper.masonry
       //- pre= h.dump(user)
       each bit in bits

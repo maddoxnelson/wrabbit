@@ -25,11 +25,20 @@ export async function updateUsersTotalWordCount(user, resetDailyCount, oldWordCo
     const wordsWrittenAlready = user.stats.wordsWrittenToday.dailyWordCount;
     const wordsAddedToTheBit = newWordCount - oldWordCount;
     const dailyWordCount = resetDailyCount ? wordsAddedToTheBit : wordsWrittenAlready + wordsAddedToTheBit; 
+    const recordKey = moment().format('MM-DD-YYYY');
+
+    const streak = user.streak || { };
+    streak[recordKey] = {
+        dailyWordCount
+    }
+
+    console.log({streak});
 
     const updatedUser = await User.findOneAndUpdate(
         { _id: user.id },
         { stats: 
             { 
+                streak,
                 totalWordsWritten: totalWordCount,
                 wordsWrittenToday: {
                     dailyWordCount: dailyWordCount,

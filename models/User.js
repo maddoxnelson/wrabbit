@@ -29,6 +29,9 @@ const userSchema = new Schema({
     { type: mongoose.Schema.ObjectId, ref: 'User' }
   ],
   stats: {
+    streak: {
+      type: Object
+    },
     totalWordsWritten : {
       type: Number,
       default: 0
