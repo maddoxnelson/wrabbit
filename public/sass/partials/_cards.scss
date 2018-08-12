@@ -1,33 +1,33 @@
 .card {
-  position: relative;
-  padding: 20px;
-  margin-bottom: 40px;
-  width: calc(33.33333333% - 20px);
-  line-height: 25px;
-  font-size: 20px;
-  background: $alice-blue;
-  align-self: flex-start;
-  border-radius: 5px;
+	position: relative;
+	padding: 20px;
+	margin-bottom: 40px;
+	width: calc(33.33333333% - 20px);
+	line-height: 25px;
+	font-size: 20px;
+	background: $alice-blue;
+	align-self: flex-start;
+	border-radius: 5px;
 
-  @media (max-width: 700px) {
-    width: 100%;
-  }
+	@media (max-width: 700px) {
+		width: 100%;
+	}
 
-  &.gradient {
-    background: linear-gradient(to bottom, $lightest-green 80%, $dark-green 120%);
-  }
+	&.gradient {
+		background: linear-gradient(to bottom, $lightest-green 80%, $dark-green 120%);
+	}
 
-  &-full {
-    width: 100%;
-  }
+	&-full {
+		width: 100%;
+	}
 
-  &-half {
-    width: 50%;
-  }
+	&-half {
+		width: 50%;
+	}
 }
 
 .card-wrapper {
-  .card:nth-last-child(1) {
-    align-self: flex-start;
-  }
+	.card:nth-last-child(1) {
+		align-self: flex-start;
+	}
 }

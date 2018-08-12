@@ -1,11 +1,16 @@
+import { 
+  updateUsersTotalWordCount, 
+  resetDailyWordCount,
+  getUsersWordCount } from '../handlers/utilities';
+import moment from 'moment';
+
 const mongoose = require("mongoose");
 const Bit = mongoose.model("Bit");
 const User = mongoose.model("User");
+const wordcount = require('wordcount');
 
-const confirmOwner = (bit, user) => {
-  if (!bit.author.equals(user._id)) {
-    throw Error('You must own a store in order to edit it.');
-  }
+exports.returnSimpleText = (req, res) => {
+  res.status(200).send('Hello World!');
 };
 
 exports.getPublicBits = async (req, res, next) => {
@@ -71,32 +76,50 @@ exports.addBit = (req, res) => {
 exports.editBit = async (req, res) => {
   // 1. Find the bit given the ID
   const bit = await Bit.findOne({ _id: req.params.id });
-  // 2. Confirm they are the owner of the store.
-  confirmOwner(bit, req.user);
+  const user = await User.findOne({ _id: req.user.id });
+  // 2. Confirm they are the owner of the bit.
 
   // 3. render out the edit form so user can update their bit.
-  res.render('editBit', { title: `Edit "${bit.name}"`, bit })
-}
+  res.render('editBit', { title: `Edit "${bit.name}"`, bit });
+};
 
 exports.deleteBit = async (req, res) => {
+  const bitNotLongForThisWorld = await Bit.findOne({ _id: req.params.id })
+  const user = await User.findOne({ _id: req.user.id })
+
+  resetDailyWordCount(user.stats.wordsWrittenToday.lastUpdated)
+  
   const bit = await Bit.deleteOne(
     { _id: req.params.id }
   ).exec()
+
+  updateUsersTotalWordCount(user);
 
   req.flash('success', `Deleted.</a>`);
   res.redirect(`/`)
 }
 
 exports.updateBit = async (req, res) => {
+  const { name, content, prompt } = req.body
+  const word_count = wordcount(content);
+  const user = await User.findOne({ _id: req.user.id })
+  const shouldResetWordCount = resetDailyWordCount(user.stats.wordsWrittenToday.lastUpdated)
+  const usersCurrentWordCount = await getUsersWordCount(user);
+  const oldBit = await Bit.findOne({ _id: req.params.id })
 
   const bit = await Bit.findOneAndUpdate(
     { _id: req.params.id }, // query
-    req.body, // data
+    { name, 
+      content, 
+      prompt,
+      word_count }, // data
     { // options
       new: true,          // return new bit, not old bit
       runValidators: true // force our model to run required validators against this
     }
   ).exec();
+
+  updateUsersTotalWordCount(user, shouldResetWordCount, oldBit.word_count, bit.word_count);
 
   req.flash('success', `Successfully updated ${bit.name}`);
   res.redirect(`/bit/${bit.slug}`)

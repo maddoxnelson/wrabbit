@@ -1,36 +1,36 @@
 body {
-  font-family: $secondary-font, sans-serif;
-  background: $cerulean-frost;
+	font-family: $secondary-font, sans-serif;
+	background: $cerulean-frost;
 }
 
 .inner {
-  padding: 0 20px;
+	padding: 0 20px;
 }
 
 .hidden {
-  display: none;
+	display: none;
 
-  &-mobile {
-    @media (max-width: 700px) {
-      display: none;
-    }
-  }
+	&-mobile {
+		@media (max-width: 700px) {
+			display: none;
+		}
+	}
 }
 
 .flash-messages {
-  background: $maize;
-  font-family: $secondary-font;
-  font-size: 18px;
+	background: $maize;
+	font-family: $secondary-font;
+	font-size: 18px;
 }
 
 .shaded {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .absolute {
-  position: absolute;
+	position: absolute;
 }
 
 .relative {
-  position: relative;
+	position: relative;
 }

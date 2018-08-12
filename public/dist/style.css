@@ -319,7 +319,9 @@ button, .button {
   border-radius: 5px;
   outline: 0;
   cursor: pointer; }
-  button:hover, .button:hover {
+  asdf
+button:hover, asdf
+.button:hover {
     background: #6d9dc5; }
 
 .icon {
@@ -388,7 +390,7 @@ nav {
   font-size: .7em;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  background: #ffec5e;
+  background: #eff5fc;
   border-radius: 5px;
   font-family: "Playfair Display"; }
   .dropdown li {

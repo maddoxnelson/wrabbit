@@ -1,36 +1,36 @@
 nav {
-  background: $ocean-blue;
-  overflow: hidden;
-  font-family: $primary-font;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 1px 1px rgba(0,0,0,0.23);
+	background: $ocean-blue;
+	overflow: hidden;
+	font-family: $primary-font;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 1px 1px rgba(0,0,0,0.23);
 
-  a {
-    color: $alice-blue;
+	a {
+		color: $alice-blue;
 
-    &:visited {
-      color: $alice-blue;
+		&:visited {
+			color: $alice-blue;
 
-      &:hover {
-        color: $maize;
-      }
-    }
+			&:hover {
+				color: $maize;
+			}
+		}
 
-    &:hover {
-      color: $maize;
-    }
-  }
+		&:hover {
+			color: $maize;
+		}
+	}
 
-  ul {
-    padding: 10px 0;
-  }
+	ul {
+		padding: 10px 0;
+	}
 
-  li {
-    font-size: 1.1em;
-    padding: 0 20px;
-    text-align: center;
+	li {
+		font-size: 1.1em;
+		padding: 0 20px;
+		text-align: center;
 
-    &:first-child {
-      padding: 0 0 0 20px;
-    }
-  }
+		&:first-child {
+			padding: 0 0 0 20px;
+		}
+	}
 }

@@ -72,15 +72,18 @@ app.use('/', routes);
 
 // if our routes fail...
 app.use(errorHandlers.notFound);
+console.log('fine from in here');
 
 // one will check for simple validation errors
 app.use(errorHandlers.flashValidationErrors);
+
+console.log('fine from app.js')
 
 if (app.get('env') === 'development') {
   app.use(errorHandlers.developmentErrors);
 }
 
 app.use(errorHandlers.productionErrors);
-
+console.log('omg please have worked')
 // done, export it so it can be used in start.js
 module.exports = app;

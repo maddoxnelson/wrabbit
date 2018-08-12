@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
+const User = mongoose.model("User");
+const wordcount = require('wordcount');
+import moment from 'moment';
 
 const bitSchema = new mongoose.Schema({
   name: {
@@ -34,8 +37,45 @@ const bitSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-bitSchema.pre('save', async function(next) {
+async function simpleResetWordCount(lastUpdated) {
+  const today = moment()
+  const userDate = moment(lastUpdated)
+  return today.format('mm') !== userDate.format('mm')
+}
 
+async function addToUsersTotalWordCount(id, wordCount) {
+
+  const author = await User.findOne({ _id: id});
+  const dailyCount = author.stats.wordsWrittenToday.dailyWordCount
+  const count = dailyCount + wordCount 
+
+  const recordKey = moment().format('MM-DD-YYYY');
+
+  const streak = author.streak || [];
+  const recordIndex = streak.findIndex(day => day.timestamp === recordKey);
+
+  if (recordIndex > -1) {
+      streak[recordIndex].dailyWordCount = count
+  } else {
+      streak.push({ timestamp: recordKey, dailyWordCount: count });
+  }
+
+  const user = await User.findOneAndUpdate(
+    { _id: id },
+    { 
+      streak: streak,
+      stats: {
+      totalWordsWritten : author.stats.totalWordsWritten + wordCount,
+      wordsWrittenToday: {
+        dailyWordCount: count,
+        lastUpdated: moment().local()
+      }
+    } }
+  );
+}
+
+bitSchema.pre('save', async function(next) {
+  
   // Any fields that are not required, but need to have values, are set here
   this.name = this.name || this.content.split(' ').slice(0,4).join(' ')
 
@@ -43,7 +83,7 @@ bitSchema.pre('save', async function(next) {
     console.log('checking for modification... finding an identical one')
     return next(); // move along, don't redo the slug if name hasn't changed
   }
-  this.word_count = Number(this.content.split(' ').length)
+  this.word_count = wordcount(this.content)
 
   // slugifies the name
   this.slug = slug(this.name);
@@ -55,13 +95,15 @@ bitSchema.pre('save', async function(next) {
     this.slug = `${this.slug}-${bitsWithSlug.length + 1}`;
   }
 
+  addToUsersTotalWordCount(this.author, this.word_count)
+
   // moves things along to the next part
   next();
 
 });
 
 function autopopulate(next) {
-  this.populate('author');
+  this.populate('author')
   next()
 };
 
