@@ -44,17 +44,31 @@ async function simpleResetWordCount(lastUpdated) {
 }
 
 async function addToUsersTotalWordCount(id, wordCount) {
-  console.log({ id, wordCount })
+
   const author = await User.findOne({ _id: id});
   const dailyCount = author.stats.wordsWrittenToday.dailyWordCount
   const count = dailyCount + wordCount 
+
+  const recordKey = moment().format('MM-DD-YYYY');
+
+  const streak = author.streak || [];
+  const recordIndex = streak.findIndex(day => day.timestamp === recordKey);
+
+  if (recordIndex > -1) {
+      streak[recordIndex].dailyWordCount = count
+  } else {
+      streak.push({ timestamp: recordKey, dailyWordCount: count });
+  }
+
   const user = await User.findOneAndUpdate(
     { _id: id },
-    { stats: {
+    { 
+      streak: streak,
+      stats: {
       totalWordsWritten : author.stats.totalWordsWritten + wordCount,
       wordsWrittenToday: {
         dailyWordCount: count,
-        lastUpdated: moment()
+        lastUpdated: moment().local()
       }
     } }
   );

@@ -1,0 +1,11 @@
+mixin streak(streak = {})
+    table
+        thead
+            tr 
+                th Date
+                th Word Count
+        tbody
+            each day, dateKey in streak
+                tr
+                    td #{dateKey}
+                    td #{day.dailyWordCount}
