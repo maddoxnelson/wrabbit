@@ -9,6 +9,7 @@ block content
     h2 Stats
     .card-wrapper
       +streak(user.stats.streak)
+      //- input(id="datepicker")
     h2 Bits by #{user.name}
     .card-wrapper.masonry
       //- pre= h.dump(user)

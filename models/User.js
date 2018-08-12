@@ -28,10 +28,10 @@ const userSchema = new Schema({
   trustedUsers: [
     { type: mongoose.Schema.ObjectId, ref: 'User' }
   ],
+  streak : {
+    type: Array
+  },
   stats: {
-    streak: {
-      type: Object
-    },
     totalWordsWritten : {
       type: Number,
       default: 0
@@ -42,8 +42,7 @@ const userSchema = new Schema({
         default: 0
       },
       lastUpdated: {
-        type: Date,
-        default: Date.now
+        type: Date
       }
     }
   }

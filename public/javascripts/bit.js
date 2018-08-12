@@ -10,6 +10,7 @@ import prompt from './modules/prompt';
 import flashClickHandler from './modules/flash';
 import { loadInExistingBit } from './modules/sprintHelpers';
 import api from './modules/apiHelpers';
+import { calendar } from './modules/statsHelpers';
 
 deleteWarning();
 flashClickHandler();
@@ -21,5 +22,5 @@ changePrivacy();
 loadInExistingBit();
 api();
 changeTrust();
-
-console.log('himatthew2')
+console.log('cal')
+calendar.initialize();
